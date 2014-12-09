@@ -1,0 +1,6 @@
+Django==1.7.1
+django-debug-toolbar==1.2.2
+django-taggit==0.12.2
+jsonfield==1.0.0
+sqlparse==0.1.14
+wsgiref==0.1.2
