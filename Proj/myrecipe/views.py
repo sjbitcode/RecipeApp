@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest 
 from django.views.generic.edit import FormView, CreateView
 from myrecipe.forms import RecipeForm
@@ -8,14 +9,6 @@ import json
 # Create your views here.
 class RecipeForm(CreateView):
   form_class = RecipeForm
-  model = Recipe
-  
-  '''
-  def dispatch(self, request, *args, **kwargs):
-    if not request.is_ajax():
-      return HttpResponseBadRequest(json.dumps({'bad':'only ajax requests allowed'}))
-    return super(RecipeForm, self).dispatch(request, *args, **kwargs)
-  '''
   
   def _allowed_methods(self):
     return ['post']
@@ -25,8 +18,10 @@ class RecipeForm(CreateView):
     # It should return an HttpResponse.
     if self.request.is_ajax():
       recipe = form.save(commit=False)
-      recipe.author = self.request.user
+      #recipe.author = self.request.user
+      recipe.author = User.objects.get(username='geet')
       recipe.save()
+      form.save_m2m()
       return HttpResponse(json.dumps({'success':'was a success!'}), content_type='application/json')
     return super(RecipeForm, self).form_valid(form)
   
