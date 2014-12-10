@@ -1,0 +1,3 @@
+cleaning for methods, 
+make models for user profile
+
