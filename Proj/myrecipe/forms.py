@@ -15,8 +15,10 @@ class RecipeForm(forms.ModelForm):
     
     # Check if all numbers are consecutive.
     #import pdb; pdb.set_trace();
-    keys = data.keys()
+    keys = sorted(data.keys())
     keys = [int(k) for k in keys]
+    for k in keys:
+      print k
     print "keys is: ", keys
     if not keys == range(1, max(keys) + 1):
       raise forms.ValidationError("Non-consecutive ingredients!")
@@ -38,7 +40,7 @@ class RecipeForm(forms.ModelForm):
     
     # Check if all numbers are consecutive.
     #import pdb; pdb.set_trace();
-    keys = data.keys()
+    keys = sorted(data.keys())
     keys = [int(k) for k in keys]
     if max(keys) < 2:
       raise forms.ValidationError("Must have at least 2 methods for recipe!")
@@ -58,16 +60,21 @@ class RecipeForm(forms.ModelForm):
     return data
   
   def save(self):
+    print "In save function now!"
     recipe = super(RecipeForm, self).save(commit=False)
       
     recipe.author = self.recipeAuthor
 
+    '''
     recipe.slug = orig = slugify(recipe.title)
 
     for x in itertools.count(1):
       if not Recipe.objects.filter(slug=recipe.slug).exists():
         break
         recipe.slug = '%s-%d' % (orig, x)
+        
+    print str(recipe.slug)
+    '''
           
     recipe.save()
     return recipe

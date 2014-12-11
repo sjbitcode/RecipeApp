@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from jsonfield import JSONField
 from taggit.managers import TaggableManager
+from myrecipe.slug import unique_slugify
 
 # Create your models here.
 class Recipe(models.Model):
@@ -15,7 +16,14 @@ class Recipe(models.Model):
   pub_date = models.DateTimeField(auto_now_add = True)
   author = models.ForeignKey(User)
   tags = TaggableManager()
-  slug = models.SlugField(unique=True)
+  slug = models.SlugField()
+  
+
+  def save(self, **kwargs):
+    slug = '%s' % (self.title)
+    unique_slugify(self, slug)
+    super(Recipe, self).save()
+
   
   @property
   def totalTime(self):

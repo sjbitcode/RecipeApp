@@ -12,6 +12,13 @@
 
   <h2>viewing {{ object.title }}</h2>
   <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }}</p>
+  <ul>
+    {% for tag in object.tags.all %}
+    <li>
+      {{ tag.name }}
+    </li>
+    {% endfor %}
+  </ul>
 
 </body>
 </html>
