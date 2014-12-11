@@ -1,32 +1,58 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest 
 from django.views.generic.edit import FormView, CreateView
+from django.utils.text import slugify
+from django.views.generic import ListView, DetailView
 from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
-import json
+import json, itertools
 
 # Create your views here.
-class RecipeForm(CreateView):
+class RecipeAddView(CreateView):
   form_class = RecipeForm
   
   def _allowed_methods(self):
     return ['post']
   
+  def post(self, request, *args, **kwargs):
+    """
+    Handles POST requests, instantiating a form instance with the passed
+    POST variables and then checked for validity.
+    """
+    form_class = self.get_form_class()
+    form = self.get_form(form_class)
+    form.recipeAuthor = request.user
+    if form.is_valid():
+        return self.form_valid(form)
+    else:
+        return self.form_invalid(form)
+  
   def form_valid(self, form):
     # This method is called when valid form data has been POSTed.
     # It should return an HttpResponse.
     if self.request.is_ajax():
-      recipe = form.save(commit=False)
-      #recipe.author = self.request.user
-      recipe.author = User.objects.get(username='geet')
-      recipe.save()
+      form.save()
       form.save_m2m()
-      return HttpResponse(json.dumps({'success':'was a success!'}), content_type='application/json')
-    return super(RecipeForm, self).form_valid(form)
+      return HttpResponse(json.dumps({'success':'was a success!', 'redirectUrl':'/myrecipe/AllRecipes'}), content_type='application/json')
+    return super(RecipeAddView, self).form_valid(form)
   
   def form_invalid(self, form):
     if self.request.is_ajax():
-      return HttpResponse(json.dumps(form.errors), content_type='application/json')
-    return super(RecipeForm, self).form_invalid(form)
+      return HttpResponseBadRequest(json.dumps(form.errors), content_type='application/json')
+    return super(RecipeAddView, self).form_invalid(form)
+
+class RecipeList(ListView):
+  model = Recipe
+  template_name = "myrecipe/AllRecipes.html"
+  
+class SingleRecipe(DetailView):
+  model = Recipe
+  template_name = "myrecipe/SingleRecipe.html"
+  
+
+  
+  
+  
+
   

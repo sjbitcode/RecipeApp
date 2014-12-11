@@ -15,6 +15,7 @@ class Recipe(models.Model):
   pub_date = models.DateTimeField(auto_now_add = True)
   author = models.ForeignKey(User)
   tags = TaggableManager()
+  slug = models.SlugField(unique=True)
   
   @property
   def totalTime(self):

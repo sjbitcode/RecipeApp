@@ -13,19 +13,38 @@
 	<h1>Add a recipe!</h1>
   <form id="recipeform" action="{% url 'myrecipe:newRecipeData' %}" method="POST">
     {% csrf_token %}
+    
+    <div id="title-error"></div>
     <p  class="formtitles">Title</p> <input id="title" type="text" name="title">
+    
+    <div id="yieldAmt-error"></div>
     <p  class="formtitles">yields</p> <input id="yieldAmt" type="number" min="1" name="yieldAmt">
+    
+    <div id="ingredients-error"></div>
     <p  class="formtitles">Ingredients</p> <input id="ingredients" type="text" name="ingredients">
+    
+    <div id="method-error"></div>
     <p  class="formtitles">Method</p> <input id="method" type="text" name="method">
+    
+    <div id="prepTime-error"></div>
     <p  class="formtitles">Prep Time</p> <input id="prepTime" type="number" min="1" name="prepTime">
+    
+    <div id="cookTime-error"></div>
     <p  class="formtitles">Cook Time</p> <input id="cookTime" type="number" name="cookTime">
+    
+    <div id="notes-error"></div>
     <p  class="formtitles">Notes</p> <input id="notes" type="text" name="notes">
+    
+    <div id="tags-error"></div>
     <p  class="formtitles">tags</p> <input id="tags" type="text" name="tags">
     <input type="submit" value="submit">
   </form>
   
+  
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
   
   <script type="text/javascript">
     function callingAjax(){
@@ -50,14 +69,17 @@
           console.log("success!");
           console.log(data);
           console.log(textstatus);
-          console.log(data.responseText)
+          console.log(data.responseText);
+          window.location = "/myrecipe/AllRecipes"
         },
         error: function(data, textstatus, jqXHR){
           console.log("error!");
           console.log(data);
           console.log(textstatus);
           
-          console.log(data.responseText)
+          console.log(data.responseText);
+          window.wtf = data;
+          errorIterate(data);
         }
       });
     }
@@ -71,6 +93,19 @@
       $('#cookTime').val(20),
       $('#notes').val('Add chocolate chips'),
       $('#tags').val('healthy, cookies, oats')
+    }
+    
+    function errorIterate(data){
+      _.each(data.responseJSON, function(value, key){
+        // value is going to be an array
+        
+          // iterate through value list of responseJSON object
+          _.each(value, function(element, index){
+            $('<p>', {
+              text: element
+            }).appendTo('#' + key + "-error");
+          });
+      });
     }
     
     $(document).ready(function(){
