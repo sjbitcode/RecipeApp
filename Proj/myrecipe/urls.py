@@ -6,5 +6,6 @@ urlpatterns = patterns('',
   url(r'^addRecipe/$', TemplateView.as_view(template_name="myrecipe/addRecipe.html"), name="addRecipe"),
   url(r'^newRecipeData/$', views.RecipeAddView.as_view(), name="newRecipeData"),
   url(r'^AllRecipes/$', views.RecipeList.as_view(), name="AllRecipes"),
-  url(r'^SingleRecipe/(?P<slug>[-\w\d]+)/$', views.SingleRecipe.as_view(), name="singleRecipe"),                    
+  url(r'^SingleRecipe/(?P<slug>[-\w\d]+)/$', views.SingleRecipe.as_view(), name="singleRecipe"),   
+  url(r'^Edit/(?P<slug>[-\w\d]+)/$', views.EditRecipe.as_view(), name="edit"),
 )

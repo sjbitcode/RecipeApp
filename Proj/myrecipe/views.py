@@ -50,6 +50,10 @@ class SingleRecipe(DetailView):
   model = Recipe
   template_name = "myrecipe/SingleRecipe.html"
   
+class EditRecipe(DetailView):
+  model = Recipe
+  template_name = "myrecipe/EditRecipe.html"
+  
 
   
   
