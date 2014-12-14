@@ -1,0 +1,88 @@
+<h1>Add a recipe!</h1>
+<form id="recipeform" action="" method="POST">
+    
+    
+    <div id="ingredients-error"></div>
+    <p class="formtitles">Ingredients</p> 
+    <div id="ingredients">
+      <input type="button" id="addIn" value="+"> <br> 
+      <input type="text" id="firstIn" class="ingredientsField" required><br>
+    </div>
+    
+    
+    <div id="method-error"></div>
+    <p class="formtitles">Method</p> 
+    <div id="methods">
+      <input type="button" id="addMd" value="+"> <br> 
+      <input type="text" id="firstMd" class="methodsField" required><br>
+      <input type="text" id="secondMd" class="methodsField" required><br>
+    </div>
+         
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+
+<h2>JSON</h2>
+<pre id="result"></pre>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+ 
+  $(document).ready(function(){
+    
+    ////////////////////////////////////////////////////////////
+    function addField(id){
+      $('#'+id).append("<div><input type='text' class='" + id + "Field' required><button class='delete'>remove</button></div>");
+    }
+  
+    function deleteField(id){
+      $(id).on('click', '.delete', function(e){
+        $(this).parent('div').remove();
+      });
+    }
+ 
+    function gatherData(id){
+      var JSONobject = {};
+      classname = id + 'Field';
+      $('input.' + classname).each(function(index){
+        JSONobject[index+1] = $(this).val();
+        console.log(JSONobject[index+1]);
+      });
+      return JSONobject;
+    }
+    // CALL gatherData FUNCTION: var ingredData = gatherData("ingredients");
+    
+    ////////////////////////////////////////////////////////////
+    $('#addIn').click(function(e){
+      addField('ingredients');
+    });
+    
+    $('#addMd').click(function(e){
+      addField('methods');
+    });
+    
+    deleteField('#ingredients');
+    deleteField('#methods');
+    
+    var ingredientsJSON;
+    var methodsJSON;
+    
+    $('#recipeform').submit(function(e){
+      e.preventDefault();
+      
+      ingredientsJSON = gatherData('ingredients');
+      methodsJSON = gatherData('methods');
+      
+      console.log(ingredientsJSON);
+      console.log(methodsJSON);
+      
+      $('#result').text(JSON.stringify(ingredientsJSON));
+      $('#result').append(JSON.stringify(methodsJSON));
+      return false;
+    });
+      
+  });
+</script>
+  
