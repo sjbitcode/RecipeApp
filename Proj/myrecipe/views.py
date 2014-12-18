@@ -1,12 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest, Http404 
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import FormView, CreateView, ListView
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
 from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
 import json, itertools
+
+class Search(ListView):
+  
 
 
 class RecipeIMList(object):

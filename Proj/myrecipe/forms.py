@@ -6,7 +6,7 @@ from django.utils.text import slugify
 class RecipeForm(forms.ModelForm):
   class Meta:
     model = Recipe
-    exclude = ['author', 'pub_date', 'slug']
+    exclude = ['author', 'pub_date', 'slug', 'ingredString']
 
   ### clean function for ingredients ###
   def clean_ingredients(self):

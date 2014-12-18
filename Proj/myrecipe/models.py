@@ -8,6 +8,7 @@ from myrecipe.slug import unique_slugify
 class Recipe(models.Model):
   title = models.CharField(blank=False, max_length=50)
   ingredients = JSONField(blank=False)
+  ingredString = models.CharField(blank=False, default='', max_length=250)
   method = JSONField(blank=False)
   yieldAmt = models.PositiveIntegerField(blank=False)
   prepTime = models.PositiveIntegerField(blank=False)
@@ -22,7 +23,16 @@ class Recipe(models.Model):
   def save(self, **kwargs):
     slug = '%s' % (self.title)
     unique_slugify(self, slug)
+    self.ingredString = self.makeIngredToString()
     super(Recipe, self).save()
+    
+  def makeIngredToString(self):
+    istring = ''
+    
+    for k in self.ingredients.keys():
+      istring += self.ingredients[k] + ' '
+    
+    return istring
 
   
   @property
