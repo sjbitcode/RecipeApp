@@ -20,11 +20,33 @@
     <div id="yieldAmt-error"></div>
     <p  class="formtitles">yields</p> <input id="yieldAmt" type="number" min="1" name="yieldAmt">
     
+    <!--
     <div id="ingredients-error"></div>
     <p  class="formtitles">Ingredients</p> <input id="ingredients" type="text" name="ingredients">
     
     <div id="method-error"></div>
     <p  class="formtitles">Method</p> <input id="method" type="text" name="method">
+    -->
+    
+    <!-- NEW INGREDIENTS AND METHOD CODE -->
+    <div id="ingredients-error"></div>
+    <p class="formtitles">Ingredients</p> 
+    <div id="ingredients">
+      <input type="button" id="addIn" value="+"> <br> 
+      <input type="text" id="firstIn" class="ingredientsField" name="ingredients" required><br>
+    </div>
+    
+    
+    <div id="method-error"></div>
+    <p class="formtitles">Method</p> 
+    <div id="methods">
+      <input type="button" id="addMd" value="+"> <br> 
+      <input type="text" id="firstMd" class="methodsField" name="method" required><br>
+      <input type="text" id="secondMd" class="methodsField" name="method" required><br>
+    </div>
+    <!-- END OF NEW CODE CHANGES -->
+    
+    
     
     <div id="prepTime-error"></div>
     <p  class="formtitles">Prep Time</p> <input id="prepTime" type="number" min="1" name="prepTime">
@@ -39,6 +61,8 @@
     <p  class="formtitles">tags</p> <input id="tags" type="text" name="tags">
     <input type="submit" value="submit">
   </form>
+  
+  <a href="{% url 'myrecipe:AllRecipes' %}">view all</a>
   
   
 
@@ -58,8 +82,10 @@
         data: {
           'title'       :$('#title').val(),
           'yieldAmt'    :$('#yieldAmt').val(),
-          'ingredients' :$('#ingredients').val(),
-          'method'      :$('#method').val(),
+          //'ingredients' :$('#ingredients').val(),
+          //'method'      :$('#method').val(),
+          'ingredients' : ingredientsJSON,
+          'method'      : methodsJSON,
           'prepTime'    :$('#prepTime').val(),
           'cookTime'    :$('#cookTime').val(),
           'notes'       :$('#notes').val(),
@@ -87,8 +113,8 @@
     function popu(){
       $('#title').val('Oatmeal Cookies'),
       $('#yieldAmt').val(12),
-      $('#ingredients').val(JSON.stringify({1:'oats', 2:'pb'})),
-      $('#method').val(JSON.stringify({1:'mix', 2:'bake'})),
+      //$('#ingredients').val(JSON.stringify({1:'oats', 2:'pb'})),
+      //$('#method').val(JSON.stringify({1:'mix', 2:'bake'})),
       $('#prepTime').val(15),
       $('#cookTime').val(20),
       $('#notes').val('Add chocolate chips'),
@@ -108,14 +134,75 @@
       });
     }
     
+    // INGREDIENTS AND METHOD FUNCTIONS
+    function addField(id){
+      $('#'+id).append("<div><input type='text' class='" + id + "Field' required><button class='delete'>remove</button></div>");
+    }
+  
+    function deleteField(id){
+      $(id).on('click', '.delete', function(e){
+        $(this).parent('div').remove();
+      });
+    }
+ 
+    function gatherData(id){
+      var JSONobject = {};
+      classname = id + 'Field';
+      $('input.' + classname).each(function(index){
+        JSONobject[index+1] = $(this).val();
+        console.log(JSONobject[index+1]);
+      });
+      return JSONobject;
+    }
+    
+    
+    var ingredientsJSON;
+    var methodsJSON;
+    // END OF INGREDIENTS AND METHOD FUNCTIONS
+    
     $(document).ready(function(){
       
       popu();
       
+      // NEW STUFF
+      $('#addIn').click(function(e){
+        addField('ingredients');
+      });
+    
+      $('#addMd').click(function(e){
+        addField('methods');
+      });
+    
+      deleteField('#ingredients');
+      deleteField('#methods');
+    
+      
       $("#recipeform").submit(function(event){
         event.preventDefault();
+        
+        
+        ingredientsJSON = gatherData('ingredients');
+        methodsJSON = gatherData('methods');
+      
+        
+        ingredientsJSON = JSON.stringify(ingredientsJSON);
+        methodsJSON = JSON.stringify(methodsJSON);
+        
+        console.log(ingredientsJSON);
+        console.log(methodsJSON);
+      
+        
+        //$('#result').text(JSON.stringify(ingredientsJSON));
+        //$('#result').append(JSON.stringify(methodsJSON));
+        // END OF NEW STUFF
+        
+        
         callingAjax();
+        
+        
       })
+      
+      
     });
   </script>
   

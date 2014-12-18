@@ -8,6 +8,21 @@ from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
 import json, itertools
 
+
+class RecipeIMList(object):
+  '''
+  Mixin to create different context variables for a recipe's ingredients and method fields.
+  '''
+  def get_context_data(self, **kwargs):
+    print "Recipe MIXIN!!!"
+    context = super(RecipeIMList, self).get_context_data(**kwargs)
+    # making new context key
+    context['ingredList'] = sorted(context['object'].ingredients.items())
+    context['methodList'] = sorted(context['object'].method.items())
+    print context['ingredList']
+    return context
+
+
 # Create your views here.
 class RecipeAddView(CreateView):
   form_class = RecipeForm
@@ -46,13 +61,16 @@ class RecipeList(ListView):
   model = Recipe
   template_name = "myrecipe/AllRecipes.html"
   
-class SingleRecipe(DetailView):
+class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/SingleRecipe.html"
   
-class EditRecipe(DetailView):
+  
+class EditRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/EditRecipe.html"
+  
+  
   
 
   

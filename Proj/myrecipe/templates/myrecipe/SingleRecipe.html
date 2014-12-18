@@ -12,7 +12,25 @@
 
   <h2>viewing {{ object.title }}</h2>
   <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }}</p>
+  
+  <div id="ingredients">
+    <ul>
+    {% for key, value in ingredList %}
+      <li>{{ key }} : {{ value }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  
+    <div id="methods">
+    <ul>
+    {% for key, value in methodList %}
+      <li>{{ key }} : {{ value }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  
   <ul>
+    <h3>Tags</h3>
     {% for tag in object.tags.all %}
     <li>
       {{ tag.name }}
@@ -20,6 +38,15 @@
     {% endfor %}
   </ul>
   <a href="{% url 'myrecipe:edit' recipe.slug %}">Edit</a>
+  
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
+  
+  <script text="text/javascript">
+    
+  </script>
 
 </body>
 </html>

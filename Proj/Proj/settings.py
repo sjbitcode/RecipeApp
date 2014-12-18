@@ -83,3 +83,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if DEBUG == True:
+  INSTALLED_APPS += ("debug_toolbar.apps.DebugToolbarConfig",)
+  INTERNAL_IPS = ("127.0.0.1", "192.168.205.1", "24.90.8.194")
+  
