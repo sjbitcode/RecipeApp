@@ -62,8 +62,9 @@ class RecipeForm(forms.ModelForm):
   def save(self):
     print "In save function now!"
     recipe = super(RecipeForm, self).save(commit=False)
-      
-    recipe.author = self.recipeAuthor
+    
+    if hasattr(self, "recipeAuthor"):
+      recipe.author = self.recipeAuthor
 
     '''
     recipe.slug = orig = slugify(recipe.title)

@@ -96,7 +96,7 @@
           console.log(data);
           console.log(textstatus);
           console.log(data.responseText);
-          window.location = "/myrecipe/AllRecipes"
+          window.location = data['redirectUrl'];
         },
         error: function(data, textstatus, jqXHR){
           console.log("error!");
@@ -198,8 +198,7 @@
         
         
         callingAjax();
-        
-        
+       
       })
       
       

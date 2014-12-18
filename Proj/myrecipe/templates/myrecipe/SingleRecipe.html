@@ -11,9 +11,16 @@
 <body id="home">
 
   <h2>viewing {{ object.title }}</h2>
-  <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }}</p>
+  <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }} by {{ object.author }}</p>
+  
+  <p>Prep Time: {{ object.prepTime }}</p>
+  <p>Cook Time: {{ object.cookTime }}</p>
+  <p>Total Time: {{ object.totalTime }}</p>
+  
+  <h4>yields {{ object.yieldAmt }}</h4>
   
   <div id="ingredients">
+    <p>Ingredients</p>
     <ul>
     {% for key, value in ingredList %}
       <li>{{ key }} : {{ value }}</li>
@@ -22,6 +29,7 @@
   </div>
   
     <div id="methods">
+    <p>Method</p>
     <ul>
     {% for key, value in methodList %}
       <li>{{ key }} : {{ value }}</li>
@@ -29,8 +37,13 @@
     </ul>
   </div>
   
+  {% if object.notes %}
+    <p>notes : {{ object.notes }}</p>
+  {% endif %}
+  
+  
+  <h3>Tags</h3>
   <ul>
-    <h3>Tags</h3>
     {% for tag in object.tags.all %}
     <li>
       {{ tag.name }}
