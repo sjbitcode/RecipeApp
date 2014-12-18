@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Search Results</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+  
+<body>
+  <div id="searchResults" class="pagination">
+    <ul>
+      {% for object in object_list %}
+      <li> {{ object.title }} </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+ 
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="{% url 'myrecipe:search' %}?page{{ page }}">Previous</a>
+    {% endif %}
+    <span>
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+    {% if page_obj.has_next %}
+      <a href="{% url 'snippet:allSnippet' pg=page_obj.next_page_number %}">Next</a>
+    {% endif %}
+  {% endif %}
+  
+  
+</body>
+  
+</html>
