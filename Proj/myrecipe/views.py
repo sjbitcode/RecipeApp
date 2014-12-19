@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, Http404 
-from django.views.generic import FormView, CreateView, ListView, DetailView
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, Http404, HttpResponseForbidden
+from django.views.generic import FormView, CreateView, ListView, DetailView, DeleteView
 from django.utils.text import slugify
 from django.db.models import Q
 from myrecipe.forms import RecipeForm
@@ -23,7 +23,7 @@ def gatherQuery(userSearch):
   res = recipes.filter(q).distinct()
   return res
 
-  
+ 
 """
 userSearchSting = dfifjdlj''
 recipeq = gatherQuery(userSearchString)
@@ -73,8 +73,30 @@ class SearchView(ListView):
     recipeq = gatherQuery(userSearchString)
     
     return recipeq
+
+
+class DeleteRecipe(DeleteView):
+  '''
+  Deletes a user's recipe based on slug-name
+  '''
+  model = Recipe
+  template_name = "myrecipe/deleteRecipe.html"
   
+  def get_success_url(self):
+    return reverse('myrecipe:AllRecipes')
+  
+  def get_object(self):
+    """
+    Gets the Recipe to delete.
+    If the Recipe does not belong to the (logged-in) User, then 
+    raise a 403 error.
+    """
+    obj = super(DeleteRecipe, self).get_object()
     
+    if not obj.author == self.request.user:
+      raise Http404
+    return obj
+
 
 class RecipeIMList(object):
   '''
