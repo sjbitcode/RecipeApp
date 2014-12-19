@@ -18,6 +18,7 @@ class Recipe(models.Model):
   author = models.ForeignKey(User)
   tags = TaggableManager()
   slug = models.SlugField()
+  #fav = models.ManyToManyField(Users)
   #http://stackoverflow.com/questions/4658747/django-related-name-for-field-clashes
   likes = models.ManyToManyField(User, blank = True, related_name = "favoriter")
   

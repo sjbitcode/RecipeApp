@@ -14,7 +14,7 @@
   
   <div id="searchResults" class="pagination">
       {% for object in object_list %}
-    <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}"></a>{{ object.title }}</p>
+    <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a></p>
       {% endfor %}
   </div>
   

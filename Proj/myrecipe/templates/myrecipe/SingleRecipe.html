@@ -51,9 +51,9 @@
     {% endfor %}
   </ul>
   
+  <a class="fav" id="{{ object.slug }}">Like</a>
+  
 
-  
-  
   <a href="{% url 'myrecipe:edit' recipe.slug %}">Edit</a>
   <a href="{% url 'myrecipe:deleteRecipe' recipe.slug %}">Delete</a>
   

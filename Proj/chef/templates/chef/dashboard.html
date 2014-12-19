@@ -15,7 +15,7 @@
   <h3>Recently Made Recipes:</h3>
   {% if recentRecipes %}
     {% for r in recentRecipes %}
-    <p><a href="{% url 'myrecipe:singleRecipe' r.slug %}">r.title</a></p>
+    <h3><a href="{% url 'myrecipe:singleRecipe' r.slug %}">{{ r.title }}</a></h3>
     {% endfor %}
     
     <a href="{% url 'chef:chefRecipes' %}">View all</a>
@@ -27,10 +27,10 @@
   <h3>Recently Liked Recipes:</h3>
   {% if recentLikes %}
     {% for r in recentLikes %}
-    <p><a href="{% url 'myrecipe:singleRecipe' r.slug %}">r.title</a></p>
+    <h3><a href="{% url 'myrecipe:singleRecipe' r.slug %}">{{ r.title }}</a></h3>
     {% endfor %}
   
-  <a href="{% url 'chef:chef:Likes' %}">View all</a>
+  <a href="{% url 'chef:chefFavorites' %}">View all</a>
   {% else %}
   <h3>No Recent Likes</h3>
   {% endif %}

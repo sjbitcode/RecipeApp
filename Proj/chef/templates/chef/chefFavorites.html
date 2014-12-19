@@ -14,7 +14,7 @@
   
   <div id="searchResults" class="pagination">
       {% for object in object_list %}
-    <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}"></a>{{ object.title }}</p>
+    <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a></p>
       {% endfor %}
   </div>
   
@@ -22,13 +22,13 @@
  
   {% if is_paginated %}
     {% if page_obj.has_previous %}
-      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+      <a href="{% url 'chef:chefFavorites' %}?page={{ page_obj.previous_page_number }}">Previous</a>
     {% endif %}
     <span>
       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     </span>
     {% if page_obj.has_next %}
-      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
+      <a href="{% url 'chef:chefFavorites' %}?page={{ page_obj.next_page_number }}">Next</a>
     {% endif %}
   {% endif %}
   
