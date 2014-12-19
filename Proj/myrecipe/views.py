@@ -174,6 +174,11 @@ class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/SingleRecipe.html"
   
+  def get_context_data(self, **kwargs):
+    context = super(SingleRecipe, self).get_context_data(**kwargs)
+    context["request"] = self.request
+    return context
+  
 class EditRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/EditRecipe.html"

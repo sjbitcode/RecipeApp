@@ -37,8 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
-    'favorite',
     'myrecipe',
+    "chef",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,3 +89,9 @@ if DEBUG == True:
   INSTALLED_APPS += ("debug_toolbar.apps.DebugToolbarConfig",)
   INTERNAL_IPS = ("127.0.0.1", "192.168.205.1", "24.90.8.194")
   
+
+# App-Specific
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+#LOGOUT_URL = "/logout/"

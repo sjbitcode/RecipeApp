@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body id="home">
+
+	<h1>Hi {{ user.username }}!</h1>
+  <br><br>
+  <h3>Recently Made Recipes:</h3>
+  {% if recentRecipes %}
+    {% for r in recentRecipes %}
+    <p><a href="{% url 'myrecipe:singleRecipe' r.slug %}">r.title</a></p>
+    {% endfor %}
+    
+    <a href="{% url 'chef:chefRecipes' %}">View all</a>
+  {% else %}
+  <h3>No Recent recipes</h3>
+  {% endif %}
+  
+  <br><br>
+  <h3>Recently Liked Recipes:</h3>
+  {% if recentLikes %}
+    {% for r in recentLikes %}
+    <p><a href="{% url 'myrecipe:singleRecipe' r.slug %}">r.title</a></p>
+    {% endfor %}
+  
+  <a href="{% url 'chef:chef:Likes' %}">View all</a>
+  {% else %}
+  <h3>No Recent Likes</h3>
+  {% endif %}
+
+</body>
+</html>
