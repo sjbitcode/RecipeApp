@@ -31,11 +31,33 @@ return Recipe.objects.filter(recipeq).distinct()
 """
 
 def ProcessLikes(request):
-  user = request.user
-  slug = request.POST.get('slug', None)
-  recipe = get_object_or_404(Recipe, slug=slug)
-
-
+  liked = False
+  success = False
+  msg = ''
+  
+  if request.is_ajax():
+    if request.user.is_authenticated():
+      user = request.user
+      slug = request.POST.get('slug', None)
+      try:
+        recipe = Recipe.objects.get(slug=slug)
+        # If the user has already favorited this recipe, then unfavorite it
+        if recipe.likes.all().get(username=user):
+          recipe.likes.remove(user)
+        else:
+          recipe.likes.add(user)
+          liked = True
+        success = True
+        msg = "was success!"
+      except: 
+        msg = "Recipe does not exist"
+        
+    if success:
+      return HttpResponse(json.dumps({"success":success, "liked":liked, "msg":msg}), content_type="application/json")
+    else:
+      return HttpResponseBadRequest(json.dumps({"success":success, "msg":msg}), content_type="application/json")
+        
+  
 class SearchView(ListView):
   """
   Search Recipes by title, tags, and ingredients.
