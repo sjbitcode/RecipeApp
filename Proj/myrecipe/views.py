@@ -30,6 +30,11 @@ recipeq = gatherQuery(userSearchString)
 return Recipe.objects.filter(recipeq).distinct()
 """
 
+def ProcessLikes(request):
+  user = request.user
+  slug = request.POST.get('slug', None)
+  recipe = get_object_or_404(Recipe, slug=slug)
+
 
 class SearchView(ListView):
   """

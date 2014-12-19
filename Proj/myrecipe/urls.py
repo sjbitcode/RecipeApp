@@ -11,4 +11,5 @@ urlpatterns = patterns('',
   url(r"^search/$", TemplateView.as_view(template_name = "myrecipe/searchForm.html"), name = "searchForm"),
   url(r'^search/results/$', views.SearchView.as_view(), name="search"),
   url(r'^delete/(?P<slug>[-\w\d]+)/$', views.DeleteRecipe.as_view(), name="deleteRecipe"),
+  url(r'^like/$', views.ProcessLikes, name="like"),
 )

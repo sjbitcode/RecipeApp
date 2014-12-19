@@ -51,7 +51,7 @@
     {% endfor %}
   </ul>
   
-  <a class="fav" id="{{ object.slug }}">Like</a>
+  <input type="button" id="like" name="{{ object.slug }}" value="Like">
   
 
   <a href="{% url 'myrecipe:edit' recipe.slug %}">Edit</a>
@@ -64,11 +64,27 @@
   
   <script type="text/javascript">
     $(document).ready(function(){
-      ('.favortite').click(function(){
-        var $this = $(this);
-        var object_slug = this.slug;
-        $.object('/like/' + id + '/', function() {
-            $this.replaceWith("<span class='liked'>Liked</span>");
+      $('#like').click(function(){
+        $.ajax({
+          type:     "POST",
+          url:      "/myrecipe/like/",
+          data:     {'slug': $(this).attr('name')},
+          dataType: 'json',
+          
+          success: function(data, textstatus, jqXHR){
+          console.log("success!");
+          console.log(data);
+          console.log(textstatus);
+          console.log(data.responseText);
+          window.location = data['redirectUrl'];
+          },
+          
+          error: function(data, textstatus, jqXHR){
+          console.log("error!");
+          console.log(data);
+          console.log(textstatus);
+          console.log(data.responseText);
+        }
         });
       });
     });
