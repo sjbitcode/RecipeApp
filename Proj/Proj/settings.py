@@ -37,7 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
+    'favit',
     'myrecipe',
+    "chef",
 )
 
 MIDDLEWARE_CLASSES = (

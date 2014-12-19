@@ -28,12 +28,9 @@ class Recipe(models.Model):
     
   def makeIngredToString(self):
     istring = ''
-    
     for k in self.ingredients.keys():
       istring += self.ingredients[k] + ' '
-    
     return istring
-
   
   @property
   def totalTime(self):
@@ -41,4 +38,7 @@ class Recipe(models.Model):
   
   def __unicode__(self):
     return self.title
+  
+
+  
   
