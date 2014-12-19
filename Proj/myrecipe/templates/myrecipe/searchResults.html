@@ -20,13 +20,13 @@
  
   {% if is_paginated %}
     {% if page_obj.has_previous %}
-      <a href="{% url 'myrecipe:search' %}?page{{ page }}">Previous</a>
+      <a href="{% url 'myrecipe:search' %}?page={{ page }}&recipeQuery={{ recipeQuery }}">Previous</a>
     {% endif %}
     <span>
       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     </span>
     {% if page_obj.has_next %}
-      <a href="{% url 'snippet:allSnippet' pg=page_obj.next_page_number %}">Next</a>
+      <a href="{% url 'myrecipe:search' %}?page={{ page_obj.next_page_number }}&recipeQuery={{ recipeQuery }}">Next</a>
     {% endif %}
   {% endif %}
   

@@ -1,16 +1,80 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseBadRequest, Http404 
-from django.views.generic.edit import FormView, CreateView, ListView
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, Http404 
+from django.views.generic import FormView, CreateView, ListView, DetailView
 from django.utils.text import slugify
-from django.views.generic import ListView, DetailView
+from django.db.models import Q
 from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
-import json, itertools
+import json, itertools, operator
 
-class Search(ListView):
+def gatherQuery(userSearch):
+  '''
+  Gathers query objects using user's search words
+  '''
+  searchWordList = userSearch.split(' ')
+  recipes = Recipe.objects.all()
   
+  q = Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList[0])
+  for word in searchWordList[1:]:
+    q.add((Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList[0])), q.connector)
 
+  res = recipes.filter(q).distinct()
+  return res
+
+  
+"""
+userSearchSting = dfifjdlj''
+recipeq = gatherQuery(userSearchString)
+return Recipe.objects.filter(recipeq).distinct()
+"""
+
+
+class SearchView(ListView):
+  """
+  Search Recipes by title, tags, and ingredients.
+  Results are paginated.
+  """
+  model = Recipe
+  template_name = "myrecipe/searchResults.html"
+  context_object_name = "object_list"
+  paginate_by = 10
+  page_kwarg = "page"
+  
+  def get_context_data(self, **kwargs):
+    context = super(SearchView, self).get_context_data(**kwargs)
+    context['recipeQuery'] = self.request.GET.get('recipeQuery', None)
+    return context
+  
+  def get(self, request, *args, **kwargs):
+    """
+    If no search results, then redirect to search form page.
+    """
+    self.object_list = self.get_queryset()
+    if not self.object_list:
+      return HttpResponseRedirect(reverse("myrecipe:searchForm"))
+    
+    return super(SearchView, self).get(request, *args, **kwargs)
+  
+  def get_queryset(self):
+    """
+    Return the list of Recipes.
+    """
+    #import pdb; pdb.set_trace();
+    # If this function has already been called, simply return (exit) from it.
+    if hasattr(self, "object_list"):
+      return self.object_list
+    
+    userSearchString = self.request.GET.get("recipeQuery", None)
+    
+    if not userSearchString:
+      return None
+    recipeq = gatherQuery(userSearchString)
+    
+    return recipeq
+  
+    
 
 class RecipeIMList(object):
   '''
@@ -87,7 +151,6 @@ class RecipeList(ListView):
 class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/SingleRecipe.html"
-  
   
 class EditRecipe(RecipeIMList, DetailView):
   model = Recipe

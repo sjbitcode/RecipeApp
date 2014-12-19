@@ -8,5 +8,6 @@ urlpatterns = patterns('',
   url(r'^AllRecipes/$', views.RecipeList.as_view(), name="AllRecipes"),
   url(r'^SingleRecipe/(?P<slug>[-\w\d]+)/$', views.SingleRecipe.as_view(), name="singleRecipe"),   
   url(r'^Edit/(?P<slug>[-\w\d]+)/$', views.EditRecipe.as_view(), name="edit"),
-  url(r'^search/results/$', views.Search.as_view(), name="search"),
+  url(r"^search/$", TemplateView.as_view(template_name = "myrecipe/searchForm.html"), name = "searchForm"),
+  url(r'^search/results/$', views.SearchView.as_view(), name="search"),
 )

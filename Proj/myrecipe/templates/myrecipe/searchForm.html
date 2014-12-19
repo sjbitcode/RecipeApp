@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Search some Recipes</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body id="home">
+  <h1>Search some Recipes here!</h1>
+  <form method="get" action="{% url 'myrecipe:search' %}">
+    <input type="text" name="recipeQuery" placeholder="Recipe names, tags, ingredients...">
+    <input type="submit" value="Go">
+  </form>
+
+</body>
+</html>
