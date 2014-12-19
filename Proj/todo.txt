@@ -1,4 +1,3 @@
-~ Cleaning for Recipe attributes.
-~ Make UserProfile model.
+~ Make UserProfile model and User Views.
 ~ Start planning and working on Templates.
 ~ clean methods for empty fields in recipe add form
