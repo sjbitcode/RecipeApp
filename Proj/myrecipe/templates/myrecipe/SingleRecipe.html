@@ -62,6 +62,18 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
   
+  <script type="text/javascript">
+    $(document).ready(function(){
+      ('.favortite').click(function(){
+        var $this = $(this);
+        var object_slug = this.slug;
+        $.object('/like/' + id + '/', function() {
+            $this.replaceWith("<span class='liked'>Liked</span>");
+        });
+      });
+    });
+  </script>
+  
 
 </body>
 </html>

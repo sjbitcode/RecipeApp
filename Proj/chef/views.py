@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, DetailView, ListView
 from django.contrib.auth import get_user_model
 from braces.views import LoginRequiredMixin
@@ -7,7 +7,28 @@ from myrecipe.models import Recipe
 User = get_user_model()
 
 
-class DashboardView(DetailView):
+class PublicChefView(DetailView):
+  """
+  View a Chef's public profile.
+  """
+  model = User
+  template_name = "chef/chef.html"
+  limit_by = 20
+  
+  def get_context_data(self, **kwargs):
+    """
+    Provide additional context data about the Chef (public User).
+    """
+    context = super(PublicChefView, self).get_context_data(**kwargs)
+    usr = context["object"]
+    context["recentRecipes"] = usr.recipe_set.all()[:self.limit_by]
+    return context
+  
+  def get_object(self):
+    return get_object_or_404(User, username = self.kwargs.get("usrname", ""))
+
+
+class DashboardView(LoginRequiredMixin, DetailView):
   """
   Render a User's dashboard.
   """
@@ -25,7 +46,6 @@ class DashboardView(DetailView):
     return context
   
   def get_object(self):
-    #return self.request.user
     return None
 
 
