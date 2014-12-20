@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from jsonfield import JSONField
 
 class UserProfile(models.Model):
   """
@@ -7,9 +8,10 @@ class UserProfile(models.Model):
   data associated with the User.
   """
   # The User that this object is connected to.
-  user = models.ForeignKey(settings.AUTH_USER_MODEL, blank = False)
+  user = models.OneToOneField(settings.AUTH_USER_MODEL, unique = True, blank = False)
   # Small biography of User.
   bio = models.TextField(max_length = 300, default = "", blank = True)
+  favIngredients = JSONField(blank=True, default={"favIngredients":["", "", ""]})
   
   def __unicode__(self):
     return "%s Profile" %(self.user.username)

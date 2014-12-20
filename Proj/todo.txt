@@ -1,3 +1,23 @@
 ~ Make UserProfile model and User Views.
 ~ Start planning and working on Templates.
 ~ clean methods for empty fields in recipe add form
+
+
+FUTURE...(after Dec 22nd)
+1) enable pdf download for single recipe
+2) search by tags
+3) disqus comments for single recipe
+4) pictures for each recipe
+5) shopping list for each user (option to add recipe to shopping list?)
+
+
+RIGHT NOW...(due Dec22nd)
+1) user bio & 3 ingredients they like to cook with - SAVE & EDIT
+2) fix urls
+3) add search bars, links to user and detailed views of recipes
+4) PYTHON SOCIAL AUTH
+5) contact us page
+6) about page ---> technical about page
+7) kitchen measurements page
+
+

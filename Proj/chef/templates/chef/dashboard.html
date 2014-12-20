@@ -36,10 +36,73 @@
   {% endif %}
   
   <br><br>
+  <form id="aboutMeForm" method="POST">
+    {% csrf_token %}
+    <h4>About me</h4>
+    <input type="text" id="userBio" value="{{ user.userprofile.bio }}"></input> <br><br>
+     
+    <h4>Favorite ingredients to cook with</h4>
+    <input type="text" id="favIngred1" value="{{ fav1 }}"></input> <br>
+    <input type="text" id="favIngred2" value="{{ fav2 }}"></input> <br>
+    <input type="text" id="favIngred3" value="{{ fav3 }}"></input> <br>
+     
+    <input type="submit" value="Update profile" id="updateMe">
+  </form>
+  <br><br>
   
   {% if ifLikedByAny %}
   <h3><a href="{% url 'chef:wholiked' %}">See who's liked your recipes!</a></h3>
   {% endif %}
+  
+  <h3><a href="{% url 'myrecipe:addRecipe' %}">Add a recipe</a></h3>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    /*
+    function getingredients() {
+      var obj = {'favIngredients':[
+        i1 = $('#favIngred1').val(),
+        i2 = $('#favIngred2').val(),
+        i3 = $('#favIngred3').val()
+      ]}
+      return
+    }
+    */
+    
+    function toAjax(){
+      $.ajax({
+        url: '/dashboard/',
+        headers: {'X-CSRFToken':$.cookie('csrftoken')},
+        type : 'POST',
+        dataType: 'json',
+        data: {
+          'bio': $('#userBio').val(),
+          'i1': $('#favIngred1').val(),
+          'i2': $('#favIngred2').val(),
+          'i3': $('#favIngred3').val()
+        },
+        success: function(data, textstatus, jqXHR){
+          window.data = data;
+          console.log("User profile updated successfully!");
+        },
+        error: function(data, textstatus, jqXHR){
+          window.data = data;
+          console.log("Error in updating user profile");
+        }
+      });
+    }
+    
+    $(document).ready(function(){
+      $('#aboutMeForm').submit(function(e){
+        e.preventDefault();
+        toAjax();
+      });
+    });
+
+  </script>
   
 
 </body>

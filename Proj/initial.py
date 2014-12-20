@@ -22,12 +22,12 @@ def makeUser(n, e, p):
 def main():
 
   # Make Users.
-  Harry = makeUser("harry", "harry@gmail.com", "harry")
   Emily = makeUser("emily", "emily@gmail.com", "emily")
   Ramin = makeUser("ramin", "ramin@gmail.com", "ramin")
   Tyler = makeUser("tyler", "tyler@gmail.com", "tyler")
   Bella = makeUser("bella", "bella@gmail.com", "bella")
   Drogo = get_user_model().objects.create_superuser(username = "drogo", email = "drogo@gmail.com", password = "drogo")
+  Harry = get_user_model().objects.create_superuser(username = "harry", email = "harry@gmail.com", password = "harry")
   
   ###################################
   In_r1 = {

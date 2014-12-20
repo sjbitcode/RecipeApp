@@ -1,5 +1,8 @@
+import json
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.generic import View, DetailView, ListView
+from django.views.generic.edit import ProcessFormView
 from django.contrib.auth import get_user_model
 from braces.views import LoginRequiredMixin
 from myrecipe.models import Recipe
@@ -37,7 +40,7 @@ def UserHasLikes(user):
   return False
 ########################################
 
-class DashboardView(LoginRequiredMixin, DetailView):
+class DashboardView(LoginRequiredMixin, DetailView, ProcessFormView):
   """
   Render a User's dashboard.
   """
@@ -54,10 +57,35 @@ class DashboardView(LoginRequiredMixin, DetailView):
     context["recentLikes"] = self.request.user.favoriter.all()[:self.limit_by]
     if UserHasLikes(self.request.user):
       context["ifLikedByAny"] = True
+    context["fav1"] = self.request.user.userprofile.favIngredients["favIngredients"][0]
+    context["fav2"] = self.request.user.userprofile.favIngredients["favIngredients"][1]
+    context["fav3"] = self.request.user.userprofile.favIngredients["favIngredients"][2]
     return context
   
   def get_object(self):
     return None
+  
+  
+  def post(self, request, *args, **kwargs):
+    msg=''
+    if request.is_ajax():
+      print "request was ajax"
+      #import pdb; pdb.set_trace();
+      request.user.userprofile.bio = request.POST.get('bio', None)
+      print str(request.user.userprofile.bio)
+      request.user.userprofile.favIngredients['favIngredients'][0] = request.POST.get('i1', None)
+      request.user.userprofile.favIngredients['favIngredients'][1] = request.POST.get('i2', None)
+      request.user.userprofile.favIngredients['favIngredients'][2] = request.POST.get('i3', None)
+      request.user.userprofile.save()
+      print str(request.user.userprofile.favIngredients)
+      
+      msg = 'Updated properly!!'
+      print msg
+      return HttpResponse(json.dumps({"msg":msg}), content_type="application/json")
+    else:
+      msg = 'Did not update properly'
+      print msg
+      return HttpResponseBadRequest(json.dumps({"msg":msg}), content_type="application/json")
   
 class WhoLiked(LoginRequiredMixin, ListView):
   """
@@ -65,7 +93,7 @@ class WhoLiked(LoginRequiredMixin, ListView):
   """
   model = Recipe
   template_name= "chef/wholiked.html"
-  paginate_by = 5
+  paginate_by = 10
   page_kwarg = "page"
   
   def get_queryset(self):
@@ -82,7 +110,7 @@ class ChefRecipesList(LoginRequiredMixin, ListView):
   """
   model = Recipe
   template_name = "chef/chefRecipes.html"
-  paginate_by = 5
+  paginate_by = 10
   page_kwarg = "page"
   
   def get_queryset(self):
@@ -98,7 +126,7 @@ class ChefFavoritesList(LoginRequiredMixin, ListView):
   """
   model = Recipe
   template_name = "chef/chefFavorites.html"
-  paginate_by = 5
+  paginate_by = 10
   page_kwarg = "page"
   
   def get_queryset(self):
