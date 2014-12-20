@@ -35,27 +35,43 @@ def ProcessLikes(request):
   success = False
   msg = ''
   
+  print "In ProcessLikes view!!!"
+  #import pdb; pdb.set_trace()
+  
   if request.is_ajax():
     if request.user.is_authenticated():
       user = request.user
       slug = request.POST.get('slug', None)
+      print slug
       try:
+        print "before getting recipe"
         recipe = Recipe.objects.get(slug=slug)
+        print "after getting recipe..." + str(recipe.title) + " ,likes-" + str(recipe.likes.count())
         # If the user has already favorited this recipe, then unfavorite it
-        if recipe.likes.all().get(username=user):
+        
+        #import pdb; pdb.set_trace();
+          # Try to see if this User likes the recipe.
+        if recipe.likes.filter(username = user.username).exists():
+          print "user " + str(user) + " already likes " + str(recipe.title)
           recipe.likes.remove(user)
+          print "user will now unlike it, likes:" + str(recipe.likes.count())
         else:
           recipe.likes.add(user)
           liked = True
+          print "user liked it, likes:" + str(recipe.likes.count())
         success = True
         msg = "was success!"
       except: 
         msg = "Recipe does not exist"
-        
-    if success:
-      return HttpResponse(json.dumps({"success":success, "liked":liked, "msg":msg}), content_type="application/json")
     else:
-      return HttpResponseBadRequest(json.dumps({"success":success, "msg":msg}), content_type="application/json")
+      msg = "User not authenticated"
+  else:
+      msg = "Method not ajax"
+        
+  if success:
+    return HttpResponse(json.dumps({"success":success, "liked":liked, "msg":msg}), content_type="application/json")
+  else:
+    return HttpResponseBadRequest(json.dumps({"success":success, "msg":msg}), content_type="application/json")
         
   
 class SearchView(ListView):

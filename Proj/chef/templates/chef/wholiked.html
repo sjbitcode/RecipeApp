@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Your Likes</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body id="home">
+
+  <div>
+    {% for recipe in object_list %}
+      {% if recipe.likes.exists %}
+        <h3>{{ recipe.title }}</h3>
+        <ul>
+        {% for u in recipe.likes.all %}
+          <li>{{ u }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+
+</body>
+</html>

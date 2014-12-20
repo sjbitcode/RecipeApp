@@ -27,6 +27,15 @@ class PublicChefView(DetailView):
   def get_object(self):
     return get_object_or_404(User, username = self.kwargs.get("usrname", ""))
 
+  
+########################################
+# Function to see if user has any recipes with any likes
+def UserHasLikes(user):
+  for r in user.recipe_set.all():
+    if r.likes.exists():
+      return True
+  return False
+########################################
 
 class DashboardView(LoginRequiredMixin, DetailView):
   """
@@ -43,12 +52,30 @@ class DashboardView(LoginRequiredMixin, DetailView):
     context = super(DashboardView, self).get_context_data(**kwargs)
     context["recentRecipes"] = self.request.user.recipe_set.all()[:self.limit_by]
     context["recentLikes"] = self.request.user.favoriter.all()[:self.limit_by]
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
     return context
   
   def get_object(self):
     return None
-
-
+  
+class WhoLiked(LoginRequiredMixin, ListView):
+  """
+  Only an author can see who liked his/her recipe.
+  """
+  model = Recipe
+  template_name= "chef/wholiked.html"
+  paginate_by = 5
+  page_kwarg = "page"
+  
+  def get_queryset(self):
+    """
+    Return list of each recipe with a sublist of users who liked them
+    """
+    print "I am " + str(self.request.user.username)
+    return self.request.user.recipe_set.all()
+  
+  
 class ChefRecipesList(LoginRequiredMixin, ListView):
   """
   Paginated list of User's created Recipes.

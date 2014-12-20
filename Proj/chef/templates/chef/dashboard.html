@@ -34,6 +34,13 @@
   {% else %}
   <h3>No Recent Likes</h3>
   {% endif %}
+  
+  <br><br>
+  
+  {% if ifLikedByAny %}
+  <h3><a href="{% url 'chef:wholiked' %}">See who's liked your recipes!</a></h3>
+  {% endif %}
+  
 
 </body>
 </html>

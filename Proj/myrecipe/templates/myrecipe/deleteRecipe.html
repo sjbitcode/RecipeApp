@@ -11,7 +11,7 @@
 <body>
   
   <div id="confirmationLink">
-    <form action="." method="post">
+    <form action="." method="POST">
       {% csrf_token %}
       Are you sure you want to delete {{ object.title }}?
       <input type="submit" value="Yes">
