@@ -12,7 +12,7 @@ FUTURE...(after Dec 22nd)
 
 
 RIGHT NOW...(due Dec22nd)
-1) user bio & 3 ingredients they like to cook with - SAVE & EDIT
+*** DONE *** 1) user bio & 3 ingredients they like to cook with - SAVE & EDIT
 2) fix urls
 3) add search bars, links to user and detailed views of recipes
 4) PYTHON SOCIAL AUTH
