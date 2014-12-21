@@ -3,6 +3,8 @@ from django import forms
 from myrecipe.models import Recipe
 from django.utils.text import slugify
 
+MAX_TAGS = 12
+
 class RecipeForm(forms.ModelForm):
   class Meta:
     model = Recipe
@@ -60,7 +62,18 @@ class RecipeForm(forms.ModelForm):
     return data
   
   ### clean function for tags ###
-  #def clean_tags(self):
+  def clean_tags(self):
+    print "in tags clean function now!"
+    data = self.cleaned_data.get("tags", None)
+    
+     # Do the number of tags exceed the maximum?
+    if len(data) > MAX_TAGS:
+      raise forms.ValidationError("Only allowed %s tags per Recipe." %(MAX_TAGS))
+    
+    # Turn all tags into lower case.
+    data = [tag.lower() for tag in data]
+    
+    return data
     
   
   def save(self):

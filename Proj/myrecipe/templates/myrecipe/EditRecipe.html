@@ -16,7 +16,7 @@
 
 <body id="home">
   
-  <h2>viewing {{ object.title }}</h2>
+  <h2>Editing {{ object.title }}</h2>
   <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }} by {{ object.author }} </p>
   
   <form id="recipeform" action="{% url 'myrecipe:newRecipeData' %}" method="POST" novalidate="novalidate">
@@ -86,7 +86,7 @@
     
     function callingAjax(){
       $.ajax({
-        url: "http://speedy-kingswood-51-163881.use1.nitrousbox.com:8888/myrecipe/newRecipeData/",
+        url: "/new/",
         type: 'POST',
         dataType: 'json',
         headers: {

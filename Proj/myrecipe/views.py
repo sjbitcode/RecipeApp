@@ -19,9 +19,11 @@ def gatherQuery(userSearch):
   searchWordList = userSearch.split(' ')
   recipes = Recipe.objects.all()
   
-  q = Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList[0])
+  #import pdb; pdb.set_trace()
+  
+  q = Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList)
   for word in searchWordList[1:]:
-    q.add((Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList[0])), q.connector)
+    q.add((Q(title__icontains=searchWordList[0]) | Q(ingredString__icontains=searchWordList[0]) | Q(tags__name__in=searchWordList)), q.connector)
 
   res = recipes.filter(q).distinct()
   return res
@@ -158,7 +160,6 @@ class RecipeIMList(object):
     return context
 
 
-# Create your views here.
 class RecipeAddView(LoginRequiredMixin, CreateView):
   form_class = RecipeForm
   model = Recipe
@@ -204,7 +205,8 @@ class RecipeAddView(LoginRequiredMixin, CreateView):
     if self.request.is_ajax():
       form.save()
       form.save_m2m()
-      return HttpResponse(json.dumps({'success':'was a success!', 'redirectUrl':'/myrecipe/AllRecipes'}), content_type='application/json')
+      redirect = reverse('chef:chefRecipes')
+      return HttpResponse(json.dumps({'success':'was a success!', 'redirectUrl':redirect}), content_type='application/json')
     return super(RecipeAddView, self).form_valid(form)
   
   def form_invalid(self, form):
@@ -236,7 +238,7 @@ class EditRecipe(RecipeIMList, DetailView):
     self.object = self.get_object()
     if not self.object.author == request.user:
       raise Http404
-    return super(get, self).get(request, *args, **kwargs) 
+    return super(EditRecipe, self).get(request, *args, **kwargs) 
   
 class NewRecipeView(LoginRequiredMixin, TemplateView):
   def get(self, request, *args, **kwargs):

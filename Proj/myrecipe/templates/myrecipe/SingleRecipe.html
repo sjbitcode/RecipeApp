@@ -84,7 +84,7 @@
       $('#like').click(function(){
         $.ajax({
           type:     "POST",
-          url:      "/myrecipe/like/",
+          url:      "/like/",
           data:     {'slug': $('#like').attr('data-slug')},
           dataType: 'json',
           headers: {
