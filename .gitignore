@@ -57,3 +57,4 @@ target/
 bin/
 include/
 *.sqlite3
+local/
