@@ -10,8 +10,27 @@
   
 <body>
   <h1>Viewing Chef {{ object.username }}:</h1>
-  <p>Joined on {{ object.date_joined|date:"SHORT_DATETIME_FORMAT" }}</p>
+  <p>Joined on {{ object.date_joined|date:"SHORT_DATE_FORMAT" }}</p>
   <br>
+  
+  <h3>{{ object.userprofile.bio }}</h3>
+  
+  {% if hasFavIngred %}
+    <h3>Ingredients I like, like alot</h3>
+    {% if object.userprofile.favIngredients.favIngredients.0 %}
+    <h4>{{ object.userprofile.favIngredients.favIngredients.0 }}</h4>
+    {% endif%}
+
+    {% if object.userprofile.favIngredients.favIngredients.1 %}
+    <h4>{{ object.userprofile.favIngredients.favIngredients.1 }}</h4>
+    {% endif%}
+
+    {% if object.userprofile.favIngredients.favIngredients.2 %}
+    <h4>{{ object.userprofile.favIngredients.favIngredients.2 }}</h4>
+    {% endif%}
+  {% endif %}
+  
+  
   
   <h2>Recent Recipes:</h2>
   <div id="" class="">

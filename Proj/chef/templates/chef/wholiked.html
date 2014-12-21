@@ -16,7 +16,11 @@
         <h3>{{ recipe.title }}</h3>
         <ul>
         {% for u in recipe.likes.all %}
-          <li>{{ u }}</li>
+          {% ifequal u user %}
+            <li>me</li>
+          {% else %}
+            <li>{{ u }}</li>
+          {% endifequal %}
         {% endfor %}
         </ul>
       {% endif %}

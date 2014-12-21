@@ -1,7 +1,8 @@
 import json
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.generic import View, DetailView, ListView
+from django.core.urlresolvers import reverse
 from django.views.generic.edit import ProcessFormView
 from django.contrib.auth import get_user_model
 from braces.views import LoginRequiredMixin
@@ -25,10 +26,26 @@ class PublicChefView(DetailView):
     context = super(PublicChefView, self).get_context_data(**kwargs)
     usr = context["object"]
     context["recentRecipes"] = usr.recipe_set.all()[:self.limit_by]
+    
+    # if user has no favorite ingredients, var if false, else true
+    hasFavIngred = False if self.request.user.userprofile.favIngredients['favIngredients'].count('') == 3 else True
+      
+    context["hasFavIngred"] = hasFavIngred
+      
     return context
   
   def get_object(self):
+    if hasattr(self, 'object'):
+      return self.object
     return get_object_or_404(User, username = self.kwargs.get("usrname", ""))
+  
+  def get(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    
+    if self.object == request.user:
+      return HttpResponseRedirect(reverse('chef:dashboard'))
+    else:
+      return super(PublicChefView, self).get(request, *args, **kwargs)
 
   
 ########################################

@@ -9,11 +9,34 @@
 </head>
 
 <body id="home">
-
-  {% for recipe in object_list %}
+  
+  
+    {% for recipe in object_list %}
+    <div style="border: 1px solid black;">
     <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
-    <br>
+    <p>{{ recipe.pub_date }}</p>
+    <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
+    </div>
   {% endfor %}
+  
+  
+  
+  {% if is_paginated %}
+  
+    {% if page_obj.has_previous %}
+      <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+      
+      
+    <span>
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+      
+    {% if page_obj.has_next %}
+      <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+      
+  {% endif %}
 
 </body>
 </html>

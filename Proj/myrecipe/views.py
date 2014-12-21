@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, Http404, HttpResponseForbidden
-from django.views.generic import FormView, CreateView, ListView, DetailView, DeleteView
+from django.views.generic import FormView, CreateView, ListView, DetailView, DeleteView, TemplateView
 from django.utils.text import slugify
+from braces.views import LoginRequiredMixin
 from django.db.models import Q
 from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
@@ -11,8 +12,10 @@ import json, itertools, operator
 
 def gatherQuery(userSearch):
   '''
+  
   Gathers query objects using user's search words
   '''
+  userSearch = userSearch.replace(',', '')
   searchWordList = userSearch.split(' ')
   recipes = Recipe.objects.all()
   
@@ -156,7 +159,7 @@ class RecipeIMList(object):
 
 
 # Create your views here.
-class RecipeAddView(CreateView):
+class RecipeAddView(LoginRequiredMixin, CreateView):
   form_class = RecipeForm
   model = Recipe
   # This is the 'editing' mode.
@@ -212,6 +215,9 @@ class RecipeAddView(CreateView):
 class RecipeList(ListView):
   model = Recipe
   template_name = "myrecipe/AllRecipes.html"
+  queryset = Recipe.objects.order_by('-pub_date')
+  paginate_by = 10
+  page_kwarg = "page"
   
 class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
@@ -225,6 +231,16 @@ class SingleRecipe(RecipeIMList, DetailView):
 class EditRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/EditRecipe.html"
+  
+  def get(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    if not self.object.author == request.user:
+      raise Http404
+    return super(get, self).get(request, *args, **kwargs) 
+  
+class NewRecipeView(LoginRequiredMixin, TemplateView):
+  def get(self, request, *args, **kwargs):
+    return super(NewRecipeView, self).get(request, *args, **kwargs)
   
   
   
