@@ -36,4 +36,7 @@ urlpatterns = patterns('',
                        
   ### Testing Python Social Auth ###
   url(r'^test$', TemplateView.as_view(template_name = "myrecipe/socialauth.html"), name="socialAuth"),
+  
+  ### Index page ###
+  url(r'^/?$',  TemplateView.as_view(template_name = "myrecipe/index.html"), name="index"),
 )

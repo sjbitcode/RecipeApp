@@ -28,7 +28,7 @@ class PublicChefView(DetailView):
     context["recentRecipes"] = usr.recipe_set.all()[:self.limit_by]
     
     # if user has no favorite ingredients, var if false, else true
-    hasFavIngred = False if self.request.user.userprofile.favIngredients['favIngredients'].count('') == 3 else True
+    hasFavIngred = False if usr.userprofile.favIngredients['favIngredients'].count('') == 3 else True
       
     context["hasFavIngred"] = hasFavIngred
       

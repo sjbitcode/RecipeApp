@@ -1,0 +1,499 @@
+@font-face {
+font-family: MathleteB;
+src: url("../fonts/Mathlete-Bulky.otf") format("opentype");
+}
+
+@font-face {
+font-family: MathleteS;
+src: url("../fonts/Mathlete-Skinny.otf") format("opentype");
+}
+
+@font-face {
+font-family: PrintBold;
+src: url("../fonts/PrintBold.otf") format("opentype");
+}
+
+@font-face {
+font-family: PrintClearly;
+src: url("../fonts/PrintClearly.otf") format("opentype");
+}
+
+
+.navbar {
+    background: linear-gradient(to right, #eb4e4e 50%, #9B1F45 20px); 
+    margin-bottom: 0px;
+    font-family: MathleteS;
+    font-size: 40px;
+}
+
+.navbar-default {
+    border-color: #F39D1E;
+}
+
+ul.nav a:hover { 
+    color: #FDC35F !important; 
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
+.redHalf > li a{
+    color: #ffffff !important; 
+}
+
+.yellowHalf button {
+    background-color: #FFFFFF !important;
+    color: #db4545 !important;
+    border: 1px solid #FFA864;
+    font-family: PrintBold;
+    font-size: 20px;
+}
+
+.yellowHalf button:hover{
+    background-color: #2D0612 !important;
+    color: #eeeeee;
+    border: 1px solid #FFA864;
+    transition: all 0.4s ease-in;
+}
+
+.navbar-default div.navbar-collapse {
+    border-top:none;
+    box-shadow:none;
+}
+
+.bigsection {
+    padding-top: 75px;
+    padding-bottom: 110px;
+}
+
+#starttodaybutton {
+    background-color: #8b3c0c;
+    color: #ffffff;
+    border-color: #E47531;
+    font-family: PrintClearly;
+    font-size: 20px;
+}
+
+#main-title {
+    font-size: 90px;
+    margin-bottom: 0px;
+    font-family: MathleteB, Helvetica, Verdana;
+    color: #ffffff;
+    
+
+}
+
+#slogan{
+    font-family: PrintClearly;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    margin-top: -25px;
+    
+
+}
+
+#starttodaybutton {
+    margin: 8px 15px 0 15px;
+}
+
+#starttodaybutton:hover {
+    transition: all 0.3s ease-in;
+    background-color: #9B1F45 !important;
+    color: #f6c347;
+}
+
+.firstblock {
+    background-color: #f6a905;
+    
+    
+    background-color: #c38038;
+background-size: 58px 58px;
+background-position: 0px 2px, 4px 35px, 29px 31px, 33px 6px,
+                     0px 36px, 4px 2px, 29px 6px, 33px 30px;
+background-image: -webkit-linear-gradient(7deg, #f6a905 23px, transparent 23px),
+                  -webkit-linear-gradient(90deg, #C90032 23px, transparent 23px),
+                  -webkit-linear-gradient(9deg, #C90032 23px, transparent 23px),
+                  -webkit-linear-gradient(90deg, #C90032 23px, transparent 23px),
+                  -webkit-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -webkit-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -webkit-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -webkit-linear-gradient(90deg, #C90032 10px, transparent 10px);
+  
+background-image: -moz-linear-gradient(7deg, #C90032 23px, transparent 23px),
+                  -moz-linear-gradient(90deg, #C90032 23px, transparent 23px),
+                  -moz-linear-gradient(9deg, #C90032 23px, transparent 23px),
+                  -moz-linear-gradient(90deg, #C90032 23px, transparent 23px),
+                  -moz-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -moz-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -moz-linear-gradient(90deg, #C90032 10px, transparent 10px),
+                  -moz-linear-gradient(90deg, #C90032 10px, transparent 10px);
+  
+background-image: linear-gradient(7deg, #f6a905 23px, transparent 23px),
+                  linear-gradient(90deg, #f6a905 23px, transparent 23px),
+                  linear-gradient(9deg, #f6a905 23px, transparent 23px),
+                  linear-gradient(90deg, #f6a905 23px, transparent 23px),
+                  linear-gradient(90deg, #f6a905 10px, transparent 10px),
+                  linear-gradient(90deg, #f6a905 10px, transparent 10px),
+                  linear-gradient(90deg, #f6a905 10px, transparent 10px),
+                  linear-gradient(90deg, #f6a905 10px, transparent 10px);
+  
+-pie-background: linear-gradient(7deg, #C90032 23px, transparent 23px) 0 2px / 58px,
+                 linear-gradient(90deg, #C90032 23px, transparent 23px) 4px 35px / 58px,
+                 linear-gradient(9deg, #C90032 23px, transparent 23px) 29px 31px / 58px,
+                 linear-gradient(90deg, #C90032 23px, transparent 23px) 33px 6px / 58px,
+                 linear-gradient(90deg, #C90032 10px, transparent 10px) 0 36px / 58px,
+                 linear-gradient(90deg, #C90032 10px, transparent 10px) 4px 2px / 58px,
+                 linear-gradient(90deg, #C90032 10px, transparent 10px) 29px 6px / 58px,
+                 linear-gradient(90deg, #C90032 10px, transparent 10px) 33px 30px / 58px,
+                 #FF7D9D;
+behavior: url(/pie/PIE.htc);
+}
+
+#soupbits {
+    margin-top: 0;
+}
+
+#tidbittext {
+    margin-bottom: 30px;
+    font-family: PrintClearly;
+    font-weight: bold;
+    font-size: 35px;
+    color: #113B06;
+}
+
+#tidbitheading {
+    font-size: 30px;
+}
+
+.tidbitblock h4 a{
+    margin: 20px 0 0 0;
+    font-family: MathleteB;
+    font-size: 50px;
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.tidbitblock h4 a:hover {
+    color: #FFFA5C;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
+
+.tidbitblock p {
+    font-family: PrintBold;
+    font-size: 20px;
+}
+
+.tidbits-icons .box{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 77px;
+    font-size: 3.0em;
+    border: 2px solid rgb(173, 89, 31);
+    border-radius: 100px;
+    vertical-align: baseline;
+    box-shadow: 0 0 0 7px white, 0 0 0 10px #793506;
+    background-color: #ffffff;
+}
+
+.top-boxes-row {
+    margin-bottom: 30px;
+}
+
+.bottom-boxes-row {
+    
+}
+
+.top-box-left {
+  margin-left: 200px;
+}
+
+.top-box-right {
+  margin-right: 200px;
+}
+
+.bottom-box-left {
+  margin-left: 300px;
+}
+
+.bottom-box-right {
+  margin-right: 300px;
+}
+
+#FRow1stIcon {
+    padding-left: 191px;
+}
+
+#FRow3rdIcon {
+    padding-right: 191px;
+}
+
+#FRow2ndIcon {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+#SRow1stIcon {
+    padding-left: 340px;
+    padding-right: 38px;
+}
+
+#SRow2ndIcon {
+    padding-right: 340px;
+    padding-left: 38px;
+}
+
+.secondblock {
+    background-color: #8ab447;
+    background-size: 80px 50px;
+    background-color: #ac0;
+    background-color: #8ab447;
+background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: -o-linear-gradient(bottom left, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: linear-gradient(to top right, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);;
+-pie-background: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                 transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                 transparent 75%, transparent) 0 0 / 50px 50px #ac0;
+behavior: url(/pie/PIE.htc);
+}
+
+/*
+#AboutVideo {
+    height: 50%;
+    width: 50%;
+}
+*/
+ .top-box-left:hover {
+    background-color: #FFAFA0;
+ }
+ 
+ .top-box-center:hover {
+   background-color: #FFC34F;
+ }
+ 
+ .top-box-right:hover {
+   background-color: #609693;
+ }
+ 
+ .bottom-box-left:hover {
+   background-color: #EF9C62;
+ }
+ 
+ .bottom-box-right:hover {
+   background-color: #CCCEE2;
+ }
+ 
+
+
+.vid {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.vid iframe, .vid object, .vid embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+    
+    width: 300px;
+    height: 200px;
+}
+
+#videoDesc a {
+    margin-top: 50px;
+    font-family: MathleteB;
+    font-size: 57px;
+    color: #ffffff !important;
+}
+
+#videoDesc a:hover {
+    color: #9C095C !important;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
+.thirdblock {
+    background-color: #d2881e;
+    background: -moz-radial-gradient(white 15%, transparent 16%),
+                -moz-radial-gradient(white 15%, transparent 16%),
+                black;
+    background: -webkit-radial-gradient(#f0b576 15%, transparent 16%), 
+                -webkit-radial-gradient(#f0b576 15%, transparent 16%), 
+                #d2881e;
+    background-position: 0 0, 80px 80px;
+    
+    -webkit-background-size: 160px 160px;
+    -moz-background-size: 160px 160px;
+    background-size: 160px 160px;
+
+}
+
+.fourthblock {
+    background-color: #ca4e5c;
+    padding-top: 75px;
+    padding-bottom: 80px;
+    
+    
+    background-color: #ca4e5c;
+background-size: 80px 120px;
+background-image: -webkit-linear-gradient(45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49),
+                  -webkit-linear-gradient(-45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49);
+background-image: -moz-linear-gradient(45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49),
+                  -moz-linear-gradient(-45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49);
+background-image: linear-gradient(45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49),
+                  linear-gradient(135deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49);
+-pie-background: linear-gradient(45deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49) 0 0 / 60px,
+                 linear-gradient(135deg, #bf3a49 25%, transparent 25%, transparent 75%, #bf3a49 75%, #bf3a49) 0 0 / 60px,
+                 #eee;
+behavior: url(/pie/PIE.htc);
+}
+
+
+.wrapperCol {
+    padding: 55px 0 55px 0;
+    border-radius: 8px;
+    
+    -webkit-box-shadow: 0px 0px 23px 1px rgba(171,56,108,1);
+    -moz-box-shadow: 0px 0px 23px 1px rgba(171,56,108,1);
+    box-shadow: 0px 0px 23px 1px rgba(171,56,108,1);
+    
+}
+
+.wrapperCol:hover {
+    -webkit-box-shadow: 0px 0px 70px 5px rgba(105,12,57,1);
+    -moz-box-shadow: 0px 0px 70px 5px rgba(105,12,57,1);
+    box-shadow: 0px 0px 70px 5px rgba(105,12,57,1);
+}
+
+
+.wrapperCol h4 {
+    font-family: MathleteB;
+    font-size:40px;
+}
+.wrapperCol h4:hover {
+    color: #d2881e !important;
+}
+
+
+.wrapperCol p {
+    font-family: PrintBold;
+    font-size: 20px;
+}
+
+#homeCol {
+    background-color: #D7AC2A;
+    color: #6A5107;
+}
+
+#homeCol span{
+    color: #B54141 !important;
+}
+
+#aboutCol {
+    background-color: #B4AA16;
+    color: #4E4A08;
+}
+
+#aboutCol span{
+    color: #FFD625 !important;
+}
+
+#contactCol {
+    background-color: #74981A;
+    color: #35460A;
+}
+
+#contactCol span {
+    color: #F2F1F6 !important;
+}
+
+.bottomlinks {
+    margin: 50px 0 0 0;
+    font-family: PrintClearly;
+    color: #ffffff;
+}
+
+.bottomlinks a {
+    font-family: MathleteS;
+    color: rgb(255, 185, 42);
+    font-size: 20px;
+}
+
+.bottomlinks a:hover {
+    color: #45A2F1;
+}
+
+
+#lightbulb {
+    color: #208E8E;
+}
+
+#list {
+    color: #871C1C;
+}
+
+#floppy {
+    color: #B09F1B;
+}
+
+#lookingglass {
+    color: #BB2B82;
+}
+
+#download {
+    color: #65A41B;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a.glow:hover, a.glow:focus
+{
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff !important;
+}
+
+.coolShadow {
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+}
+
+.lightShadow {
+    text-shadow: 0px 4px 3px rgba(255, 255, 255, 0.4),
+             0px 8px 13px rgba(255, 255, 255, 0.1),
+             0px 18px 23px rgba(255, 255, 255, 0.4);
+             
+   text-shadow: 0px 4px 3px rgba(14, 187, 255, 0.2),
+             0px 8px 13px rgba(14, 187, 255, 0.2),
+             0px 18px 23px rgba(14, 187, 255, 0.2);
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
