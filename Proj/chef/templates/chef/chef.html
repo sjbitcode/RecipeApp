@@ -10,7 +10,7 @@
   
 <body>
   <h1>Viewing Chef {{ object.username }}:</h1>
-  <p>Joined on {{ object.date_joined|date:"SHORT_DATE_FORMAT" }}</p>
+  <p>Joined on {{ object.date_joined|date:'F d, Y' }}</p>
   <br>
   
   <h3>{{ object.userprofile.bio }}</h3>

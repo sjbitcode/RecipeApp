@@ -11,7 +11,9 @@
 <body id="home">
 
   <h2>viewing {{ object.title }}</h2>
-  <p>Added on {{ object.pub_date | date:"l M d, Y - h:i:s A" }} by {{ object.author }}</p>
+  <p>
+    Added on {{ object.pub_date | date:"M d, Y" }} by <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ object.author }}</a>
+  </p>
   
   <p>Prep Time: {{ object.prepTime }}</p>
   <p>Cook Time: {{ object.cookTime }}</p>

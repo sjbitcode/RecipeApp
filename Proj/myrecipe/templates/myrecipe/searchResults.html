@@ -24,6 +24,11 @@
       <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
       <p>{{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}</p>
       <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
+      
+      <p>{{recipe.likes.count}} likes</p>
+      {% for tag in recipe.tags.all %}
+      <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag.name }}">{{ tag.name }}</a>
+      {% endfor %}  
       </div>
     {% endfor %}
   

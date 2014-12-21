@@ -11,8 +11,8 @@
 <body id="home">
 
 	<h1>Hi {{ user.username }}!</h1><br>
-  <h3>Joined {{ user.date_joined }}</h3><br>
-  <p>last login {{ user.last_login }}</p>
+  <h3>Joined {{ user.date_joined|date:'F d, Y' }}</h3><br>
+  <p>last login {{ user.last_login|date:'l, F d, Y P' }}</p>
   <br><br>
   <h3>Recently Made Recipes:</h3>
   {% if recentRecipes %}
