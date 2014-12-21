@@ -62,10 +62,13 @@
     <p  class="formtitles">tags</p> 
     
     <input id="tags" type="text" value="{% for tag in object.tags.all %}{% if forloop.last %}{{ tag }}{% else %}{{ tag }}, {% endif %}{% endfor %}", name="tags">
+    <br>
     
     <input type="submit" value="submit">
     </form>
   
+    <a href="{% url 'chef:dashboard' %}">Cancel</a>
+    
   <!--
   <ul>
     <h3>Tags</h3>
