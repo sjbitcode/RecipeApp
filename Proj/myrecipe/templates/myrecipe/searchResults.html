@@ -9,13 +9,23 @@
 </head>
   
 <body>
-  <div id="searchResults" class="pagination">
+  
+  <!--
     <ul>
       {% for object in object_list %}
       <li> <a href = "{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a> </li>
       {% endfor %}
     </ul>
-  </div>
+   -->
+  
+  
+  {% for recipe in object_list %}
+      <div style="border: 1px solid black;">
+      <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
+      <p>{{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}</p>
+      <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
+      </div>
+    {% endfor %}
   
  
   {% if is_paginated %}

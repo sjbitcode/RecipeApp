@@ -59,6 +59,10 @@ class RecipeForm(forms.ModelForm):
     
     return data
   
+  ### clean function for tags ###
+  #def clean_tags(self):
+    
+  
   def save(self):
     print "In save function now!"
     recipe = super(RecipeForm, self).save(commit=False)

@@ -99,7 +99,7 @@ class SearchView(ListView):
     """
     self.object_list = self.get_queryset()
     if not self.object_list:
-      return HttpResponseRedirect(reverse("myrecipe:searchForm"))
+      return HttpResponseRedirect(reverse("myrecipe:noResults"))
     
     return super(SearchView, self).get(request, *args, **kwargs)
   

@@ -12,12 +12,13 @@
   
   
     {% for recipe in object_list %}
-    <div style="border: 1px solid black;">
-    <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
-    <p>{{ recipe.pub_date }}</p>
-    <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
-    </div>
-  {% endfor %}
+      <div style="border: 1px solid black;">
+      <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
+      <p>{{ recipe.pub_date }}</p>
+      <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
+      <p>{{recipe.likes.count}} likes</p>
+      </div>
+    {% endfor %}
   
   
   
