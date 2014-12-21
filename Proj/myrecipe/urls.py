@@ -33,4 +33,7 @@ urlpatterns = patterns('',
                        
   ### View to like a recipe. ###
   url(r'^like/$', views.ProcessLikes, name="like"),
+                       
+  ### Testing Python Social Auth ###
+  url(r'^test$', TemplateView.as_view(template_name = "myrecipe/socialauth.html"), name="socialAuth"),
 )

@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
+    'social.apps.django_app.default',
     'myrecipe',
     "chef",
 )
@@ -95,3 +96,36 @@ if DEBUG == True:
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
 #LOGOUT_URL = "/logout/"
+
+
+# Python Social Auth Settings
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+# Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '839355579464929'
+SOCIAL_AUTH_FACEBOOK_SECRET = '2ccd639a3d76bb071e91119843a93b65'
+
+# Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '940415505374-jajgekhpok306mcri8dv73u2dr2sfm1f.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KgUYYYCfOtHtyEyW6MZGjL1R'
+
+# Twitter
+SOCIAL_AUTH_TWITTER_KEY = 'wHxTIEeS2WabEvpKC4Du8yzMQ'
+SOCIAL_AUTH_TWITTER_SECRET = 'smpKnwmQ9zNHVUa0FqJKaKcf4yxMKj5O66Xm5cobc2RiqfvPOO'
