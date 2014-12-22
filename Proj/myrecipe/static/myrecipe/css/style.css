@@ -20,10 +20,15 @@ src: url("../fonts/PrintClearly.otf") format("opentype");
 
 
 .navbar {
-    background: linear-gradient(to right, #eb4e4e 50%, #9B1F45 20px); 
+    background: linear-gradient(to right, #AC1851 50%, #9B1F45 20px); 
     margin-bottom: 0px;
     font-family: MathleteS;
     font-size: 40px;
+    border-color: none;
+}
+
+.navbar-nav li a {
+    line-height: 50px;
 }
 
 .navbar-default {
@@ -31,7 +36,7 @@ src: url("../fonts/PrintClearly.otf") format("opentype");
 }
 
 ul.nav a:hover { 
-    color: #FDC35F !important; 
+    color: #330712 !important; 
     -webkit-transition: 500ms linear 0s;
     -moz-transition: 500ms linear 0s;
     -o-transition: 500ms linear 0s;
@@ -43,17 +48,19 @@ ul.nav a:hover {
 }
 
 .yellowHalf button {
-    background-color: #FFFFFF !important;
-    color: #db4545 !important;
-    border: 1px solid #FFA864;
-    font-family: PrintBold;
+    background-color: #ffffff;
+    color: #605858;
+    border-color: #E47531;
+    font-family: PrintClearly;
     font-size: 20px;
 }
 
 .yellowHalf button:hover{
-    background-color: #2D0612 !important;
-    color: #eeeeee;
-    border: 1px solid #FFA864;
+    background-color: #3E4258 !important;
+    background-color: #FBF2E2 !important;
+    color: #ffffff;
+    color: #605858;
+    /*border: 1px solid #FFA864;*/
     transition: all 0.4s ease-in;
 }
 
@@ -62,14 +69,24 @@ ul.nav a:hover {
     box-shadow:none;
 }
 
+.secondnav {
+  background: #FBF2E2;
+  font-size: 35px;
+}
+
+#chefname {
+  padding-left:27px;
+  font-family: PrintClearly;
+}
+
 .bigsection {
     padding-top: 75px;
     padding-bottom: 110px;
 }
 
-#starttodaybutton {
-    background-color: #8b3c0c;
-    color: #ffffff;
+.starttodaybutton {
+    background-color: #ffffff;
+    color: #605858;
     border-color: #E47531;
     font-family: PrintClearly;
     font-size: 20px;
@@ -79,7 +96,7 @@ ul.nav a:hover {
     font-size: 90px;
     margin-bottom: 0px;
     font-family: MathleteB, Helvetica, Verdana;
-    color: #ffffff;
+    color: #8E8A8A;
     
 
 }
@@ -88,25 +105,25 @@ ul.nav a:hover {
     font-family: PrintClearly;
     font-size: 30px;
     margin-bottom: 15px;
-    color: #ffffff;
+    color: #484040;
     margin-top: -25px;
     
 
 }
 
-#starttodaybutton {
+.starttodaybutton {
     margin: 8px 15px 0 15px;
 }
 
-#starttodaybutton:hover {
+.starttodaybutton:hover {
     transition: all 0.3s ease-in;
     background-color: #9B1F45 !important;
     color: #f6c347;
 }
 
 .firstblock {
-    background-color: #f6a905;
-    
+    background-color: #F8F4F4;
+    /*
     
     background-color: #c38038;
 background-size: 58px 58px;
@@ -149,6 +166,7 @@ background-image: linear-gradient(7deg, #f6a905 23px, transparent 23px),
                  linear-gradient(90deg, #C90032 10px, transparent 10px) 33px 30px / 58px,
                  #FF7D9D;
 behavior: url(/pie/PIE.htc);
+  */
 }
 
 #soupbits {
@@ -158,25 +176,25 @@ behavior: url(/pie/PIE.htc);
 #tidbittext {
     margin-bottom: 30px;
     font-family: PrintClearly;
-    font-weight: bold;
     font-size: 35px;
     color: #113B06;
 }
 
 #tidbitheading {
     font-size: 30px;
+    color: #57565B;
 }
 
 .tidbitblock h4 a{
     margin: 20px 0 0 0;
     font-family: MathleteB;
     font-size: 50px;
-    color: #337ab7;
+    color: #3E4258;
     text-decoration: none;
 }
 
 .tidbitblock h4 a:hover {
-    color: #FFFA5C;
+    color: #E28383;
     -webkit-transition: 500ms linear 0s;
     -moz-transition: 500ms linear 0s;
     -o-transition: 500ms linear 0s;
@@ -185,8 +203,12 @@ behavior: url(/pie/PIE.htc);
 
 
 .tidbitblock p {
-    font-family: PrintBold;
+    font-family: PrintClearly;
     font-size: 20px;
+}
+
+.tidbitblock i {
+  color: #969898;
 }
 
 .tidbits-icons .box{
@@ -195,10 +217,10 @@ behavior: url(/pie/PIE.htc);
     height: 80px;
     line-height: 77px;
     font-size: 3.0em;
-    border: 2px solid rgb(173, 89, 31);
+    border: 1px solid #9B1F45;
     border-radius: 100px;
     vertical-align: baseline;
-    box-shadow: 0 0 0 7px white, 0 0 0 10px #793506;
+    box-shadow: 0 0 0 7px white, 0 0 0 9px #AC1851;
     background-color: #ffffff;
 }
 
@@ -268,7 +290,7 @@ behavior: url(/pie/PIE.htc);
     height: 50%;
     width: 50%;
 }
-*/
+
  .top-box-left:hover {
     background-color: #FFAFA0;
  }
@@ -288,6 +310,15 @@ behavior: url(/pie/PIE.htc);
  .bottom-box-right:hover {
    background-color: #CCCEE2;
  }
+*/
+
+.box:hover {
+  background-color: #9B1F45;
+}
+
+.box i:hover {
+  color: #ffffff;
+}
  
 
 
@@ -435,7 +466,7 @@ behavior: url(/pie/PIE.htc);
     color: #45A2F1;
 }
 
-
+/*
 #lightbulb {
     color: #208E8E;
 }
@@ -455,6 +486,7 @@ behavior: url(/pie/PIE.htc);
 #download {
     color: #65A41B;
 }
+*/
 
 a {
     text-decoration: none !important;
@@ -487,6 +519,29 @@ a.glow:hover, a.glow:focus
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.footer {
+  background-color: #3E4258;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: PrintClearly;
+  font-size: 25px;
+  color: #eeeeee;
+}
+
+a {
+  color: #ffffff;
+}
+
+.nav-pills > .active > a:hover,.nav-pills > li > a:hover {
+  background-color: #FBF2E2;
+  /*border: 1px solid white;*/
+}
+
+.logofooter {
+  font-size: 30px;
+  margin-bottom: 15px;
 }
 
 
