@@ -220,6 +220,21 @@ class RecipeList(ListView):
   queryset = Recipe.objects.order_by('-pub_date')
   paginate_by = 10
   page_kwarg = "page"
+
+class Modify(ListView):
+  """
+  Paginated list of User's created Recipes.
+  """
+  model = Recipe
+  template_name = "myrecipe/modifyRecipe.html"
+  paginate_by = 10
+  page_kwarg = "page"
+  
+  def get_queryset(self):
+    """
+    Return the list of user's Recipes.
+    """
+    return self.request.user.recipe_set.all()
   
 class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
@@ -245,10 +260,4 @@ class NewRecipeView(LoginRequiredMixin, TemplateView):
     return super(NewRecipeView, self).get(request, *args, **kwargs)
   
   
-  
-
-  
-  
-  
-
-  
+ 

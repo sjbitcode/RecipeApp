@@ -6,8 +6,10 @@
 
 {% block main %}
 
-<body id="home">
+<!--<body id="home">-->
   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#">Dashboard</a></li>
       <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
@@ -16,7 +18,11 @@
       {% if ifLikedByAny %}
       <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
       {% endif %}
+      
+      <li class="exploreTab"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
     </ul>
+        </div>
+    </div>
   </div>
  
   
@@ -227,5 +233,5 @@
   {% endblock %}
   
 
-</body>
-</html>
+<!--</body>
+</html>-->

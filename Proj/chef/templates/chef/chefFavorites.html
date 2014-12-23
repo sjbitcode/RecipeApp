@@ -1,14 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Chef Favorites</title>
-	<!--[if IE]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-  
-<body>
+{% extends 'myrecipe/_base.html' %}
+{% load staticfiles %}
+
+{% block title %}My Favorites{% endblock %}
+
+{% block main %}
+
+<div class="container">
+   <div class="row">
+     <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li><a href="{% url 'chef:dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
+      <li class="active"><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
+      {% if ifLikedByAny %}
+      <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+      {% endif %}
+    </ul>
+     </div>
+  </div>
+  </div>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
   <h1>Viewing your Favorited Recipes:</h1>
   <br>
   
@@ -31,8 +48,8 @@
       <a href="{% url 'chef:chefFavorites' %}?page={{ page_obj.next_page_number }}">Next</a>
     {% endif %}
   {% endif %}
+        </div>
+    </div>
+  </div>
+{% endblock %} 
   
-  
-</body>
-  
-</html>

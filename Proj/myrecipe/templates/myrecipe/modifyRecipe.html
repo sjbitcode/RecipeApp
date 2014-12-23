@@ -1,7 +1,7 @@
 {% extends 'myrecipe/_base.html' %}
 {% load staticfiles %}
 
-{% block title %}My Recipes{% endblock %}
+{% block title %}Modify Recipe{% endblock %}
 
 {% block styles %}
 {% endblock %}
@@ -29,9 +29,9 @@
     <div class="row">
     <div class="col-md-12">
     <ul class="nav nav-pills">
-      <li class="active"><a href="#">All Recipes</a></li>
+      <li><a href="#">All Recipes</a></li>
       <li><a href="{% url 'myrecipe:addRecipe' %}">Add Recipe</a></li>
-      <li><a href="{% url 'myrecipe:modify' %}">Modify Recipe</a></li>
+      <li class="active"><a href="#">Modify Recipe</a></li>
     </ul>
     </div>
   </div>
@@ -44,6 +44,7 @@
       <div id="searchResults">
         {% for object in object_list %}
       <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a></p>
+        <input type="button" value="edit"> <input type="button" value="delete">
         {% endfor %}
       </div>
           </div>
@@ -74,8 +75,3 @@
   
   {% block scripts %}
   {% endblock %}
-    
-  
-  
-<!-- </body> -->
-  

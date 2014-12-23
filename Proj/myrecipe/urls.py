@@ -19,6 +19,9 @@ urlpatterns = patterns('',
   ### Edit an existing recipe. ###
   url(r'^edit/(?P<slug>[-\w\d]+)/$', views.EditRecipe.as_view(), name="edit"),
                        
+  ### Modify an existing recipe i.e. Edit or Delete ###
+  url(r'^modify/$', views.Modify.as_view(), name="modify"),
+                       
   ### Search for a recipe. ###
   url(r"^search/$", TemplateView.as_view(template_name = "myrecipe/searchForm.html"), name = "searchForm"),
                        

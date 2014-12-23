@@ -120,6 +120,16 @@ class WhoLiked(LoginRequiredMixin, ListView):
     print "I am " + str(self.request.user.username)
     return self.request.user.recipe_set.all()
   
+  def get_context_data(self, **kwargs):
+    """
+    Return boolean variable 'ifLikedByAny' to 
+    determine whether to tell the user or not
+    """
+    context = super(WhoLiked, self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
+  
   
 class ChefRecipesList(LoginRequiredMixin, ListView):
   """
@@ -132,9 +142,19 @@ class ChefRecipesList(LoginRequiredMixin, ListView):
   
   def get_queryset(self):
     """
-    Return the list of 'Favorited' Recipes.
+    Return the list of user's Recipes.
     """
     return self.request.user.recipe_set.all()
+  
+  def get_context_data(self, **kwargs):
+    """
+    Return boolean variable 'ifLikedByAny' to 
+    determine whether to tell the user or not
+    """
+    context = super(ChefRecipesList, self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
 
 
 class ChefFavoritesList(LoginRequiredMixin, ListView):
@@ -151,4 +171,14 @@ class ChefFavoritesList(LoginRequiredMixin, ListView):
     Return the list of 'Favorited' Recipes.
     """
     return self.request.user.favoriter.all()
+  
+  def get_context_data(self, **kwargs):
+    """
+    Return boolean variable 'ifLikedByAny' to 
+    determine whether to tell the user or not
+    """
+    context = super(ChefFavoritesList, self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
 
