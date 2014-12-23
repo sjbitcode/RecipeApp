@@ -81,8 +81,8 @@
           <!-- START FOOTER -->
           <div class="panel-footer">
             
-            {% for tag in recipe.threeTags.all %}
-              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag.name }}">{{ tag }}</a>
+            {% for tag in recipe.threeTags %}
+              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>
             {% endfor %} 
             
           </div>
