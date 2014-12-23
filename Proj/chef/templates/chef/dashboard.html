@@ -3,6 +3,8 @@
 
 {% block title %}Dashboard{% endblock %}
 
+{% block styles %}
+{% endblock %}
 
 {% block main %}
 
@@ -197,17 +199,22 @@
     
     $(document).ready(function(){
       
+      
+      
       $('#userBio').val("{{user.userprofile.bio}}");
       
       var left=300;
-      $('#text_counter').text(left + ' characters remaining');
+      var text_length = $('#userBio').val().length;
+      var text_remaining = left - text_length;
+      
+      $('#text_counter').text(text_remaining + ' characters remaining');
       
       $('#userBio').keyup(function () {
  
             left = 300 - $(this).val().length;
             
-            var text_length = $('#userBio').val().length;
-            var text_remaining = left - text_length;
+            //var text_length = $('#userBio').val().length;
+            //var text_remaining = left - text_length;
             
             $('#text_counter').text(text_remaining + ' characters remaining');
  

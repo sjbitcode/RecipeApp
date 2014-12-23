@@ -35,6 +35,17 @@ class Recipe(models.Model):
     return istring
   
   @property
+  def shortenTitle(self):
+    if len(self.title) > 22:
+      return self.title[:19] + '...'
+    return self.title
+  
+  @property
+  def threeTags(self):
+    return self.tags.names()[:3]
+    
+  
+  @property
   def totalTime(self):
     return self.prepTime + self.cookTime
   

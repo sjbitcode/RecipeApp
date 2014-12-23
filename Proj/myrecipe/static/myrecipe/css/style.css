@@ -589,7 +589,14 @@ a {
 }
 
 .badge {
-  background-color: #B45216;
+  background-color: #DB7E54;
+  background-color: #CB957D;
+  background-color: #E6587E;
+  background-color: #E68558;
+}
+
+.listView {
+  margin-top: 30px;
 }
 
 .dashboardpage {
@@ -601,7 +608,38 @@ a {
 }
 
 .exploreTab {
-  float:right;
+  float: right !important;
+}
+
+.fa-square {
+  color: white;
+  border: 1px solid rgb(255, 148, 0);
+  border-radius: 3px;
+}
+
+.listViewIcon {
+  color: #E6587E;
+  color: #3E4258;
+  color: ##818289;
+  color: #818289;
+}
+
+.thumbnail a {
+  color: #515D68;
+}
+
+.thumbnail {
+  background-color: #FBF2E2;
+}
+
+.thumbnail .panel-footer {
+  background-color: #F0D3A9 !important
+}
+
+.well-lg {
+  background-color: #F8F4F4;
+  margin-top: 30px;
+  border-color: #E0DEF5;
 }
 
 
