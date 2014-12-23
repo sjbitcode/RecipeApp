@@ -4,6 +4,7 @@
 {% block title %}{{ object.title }}{% endblock %}
 {% block styles %}
 <link href="{% static 'myrecipe/css/bootstrap-tokenfield.min.css' %}" rel="stylesheet">
+<link href="{% static 'myrecipe/css/singleRecipe.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -67,6 +68,85 @@
 {% endif %}
 
 
+<!-- Begin Single Recipe -->
+
+<div class="container">
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+      
+      <ul class="list-unstyled">
+        <li><div><h2>{{ object.title }}</h2></div></li>
+        <li><div><p>added by: <a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></p></div></li>
+      </ul>
+      
+    </div>
+  </div> <!-- /.row -->
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="well">
+        <ul class="list-unstyled list-inline subheading-group">
+          <li class="subheading"><h3>Ingredients</h3></li>
+          <li class="subheading2"><h3><small>Servings: {{ object.yieldAmt }}</small></h3></li>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- /.row -->
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="list-unstyled sublist">
+          {% for key, value in ingredList %}
+          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;{{ value }}</p></li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div> <!-- /.row -->
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="well">
+        <ul class="list-unstyled list-inline subheading-group">
+          <li class="subheading"><h3>Method</h3></li>
+          <li class="subheading2">
+            <ul class="list-unstyled list-inline">
+              <li><h3><small>Prep time: {{ object.prepTime }}</small></h3></li>
+              <li><h3><small>Cook time: {{ object.cookTime }}</small></h3></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- /.row -->
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="list-unstyled sublist">
+          {% for key, value in methodList %}
+          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;{{ value }}</p></li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div> <!-- /.row -->
+  
+  
+  {% if object.notes %}
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 notes">
+      <h3>Notes:&nbsp;&nbsp;<span class="text-muted">{{ object.notes }}</span></h3>
+    </div>
+  </div> <!-- /.row -->
+  {% endif %}
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv">
+      <h3>Tags</h3>
+      <input id="tags" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
+    </div>
+  </div> <!-- /.row -->
+  
+</div> <!-- /.container -->
 
 <div class="container">
   <h2>viewing {{ object.title }}</h2>
@@ -100,7 +180,7 @@
   
   
   <h3>Tags</h3>
-   <input id="tags" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
+   <input id="tagss" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
     
   <input id="testingInput" value="this is a test"><br>
    
@@ -181,6 +261,7 @@
     $(document).ready(function(){
       
        $('#tags').tokenfield({});
+       $('#tags').tokenfield('readonly');
     /*
       $('.token').click(function(){
         var s = $($(this)).find('.token-label').text();

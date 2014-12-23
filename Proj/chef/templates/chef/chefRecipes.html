@@ -37,17 +37,88 @@
 </div>
   
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div id="searchResults">
-        {% for object in object_list %}
-        <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a></p>
-        {% endfor %}
+<div class="container"> <!-- CONTAINER -->
+  
+  <div class="well well-lg">
+    <div class="row">
+
+      {% for recipe in object_list %}
+      <!-- START COLUMN -->
+      <div class="col-xs-6 col-md-3">
+
+        <!-- START THUMBNAIL -->
+        <div class="thumbnail">
+
+          <!-- START CAPTOPN -->
+          <div class="caption greeting">
+            <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}"><h3>{{ recipe.shortenTitle }}</h3>
+            <a href="{% url 'chef:chef' recipe.author %}"><p class="listViewAuthor">by {{recipe.author}}</p></a> 
+            
+            
+            <p class="listView">
+              <a href="{url 'myrecipe:singleRecipe' recipe.slug}">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+              
+              <a>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+             </p>
+            
+            <!-- START ROW -->
+            
+                <span class="badge listView">
+                  {{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}
+                </span>
+           
+                <span class="badge listView">
+                  <i class="fa fa-thumbs-up "></i>
+                  {{ recipe.likes.count }}
+                </span>
+            
+               <span class="badge listView">
+                  <i class="fa fa-clock-o "></i>
+                  {{ recipe.totalTime }} min.
+                </span>
+                
+            
+            <!-- END ROW -->
+            
+          </div>
+          <!-- END CAPTOPN -->
+
+          <!-- START FOOTER -->
+          <div class="panel-footer">
+            
+            <i class="fa fa-tag listViewIcon"></i>
+            
+            {% for tag in recipe.threeTags %}
+              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>,
+            {% endfor %} 
+            
+          </div>
+          <!-- END FOOTER -->
+
+        </div>
+        <!-- END THUMBNAIL -->
+
       </div>
+      <!-- END COLUMN -->
+      {% endfor %}
+
     </div>
+    <!-- END ROW -->
+    
   </div>
-  <div class="row">
+  <!-- END WELL -->
+  
+  <div class="row"> <!-- ROW -->
     <div class="col-md-12">
       {% if is_paginated %}
       {% if page_obj.has_previous %}
@@ -61,8 +132,12 @@
       {% endif %}
       {% endif %}
     </div>
-  </div>
-</div>
+  </div><!-- END ROW -->
+  
+</div> <!-- END OF CONTAINER -->
+
+
+
 {% endblock %}
 {% block scripts %}
 {% endblock %}

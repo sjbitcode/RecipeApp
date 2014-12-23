@@ -11,23 +11,140 @@
 <div class="container">
    <div class="row">
      <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li><a href="{% url 'chef:dashboard' %}">Dashboard</a></li>
-      <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
-      <li class="active"><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
-      {% if ifLikedByAny %}
-      <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
-      {% endif %}
-      
-       <li class="exploreTab"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
-    </ul>
+        <ul class="nav nav-tabs">
+          <li><a href="{% url 'chef:dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
+          <li class="active"><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
+          {% if ifLikedByAny %}
+          <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+          {% endif %}
+          <li class="exploreTab"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
+        </ul>
      </div>
   </div>
+</div>
+
+
+
+
+<div class="container"> <!-- CONTAINER -->
+  
+  <div class="well well-lg">
+    <div class="row">
+
+      {% for recipe in object_list %}
+      <!-- START COLUMN -->
+      <div class="col-xs-6 col-md-3">
+
+        <!-- START THUMBNAIL -->
+        <div class="thumbnail">
+
+          <!-- START CAPTOPN -->
+          <div class="caption greeting">
+            <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}"><h3>{{ recipe.shortenTitle }}</h3>
+            <a href="{% url 'chef:chef' recipe.author %}"><p class="listViewAuthor">by {{recipe.author}}</p></a> 
+            
+            
+            <p class="listView">
+              <a href="{url 'myrecipe:singleRecipe' recipe.slug}">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+              
+              <a>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+             </p>
+            
+            <!-- START ROW -->
+            
+                <span class="badge listView">
+                  {{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}
+                </span>
+           
+                <span class="badge listView">
+                  <i class="fa fa-thumbs-up "></i>
+                  {{ recipe.likes.count }}
+                </span>
+            
+               <span class="badge listView">
+                  <i class="fa fa-clock-o "></i>
+                  {{ recipe.totalTime }} min.
+                </span>
+                
+            
+            <!-- END ROW -->
+            
+          </div>
+          <!-- END CAPTOPN -->
+
+          <!-- START FOOTER -->
+          <div class="panel-footer">
+            
+            <i class="fa fa-tag listViewIcon"></i>
+            
+            {% for tag in recipe.threeTags %}
+              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>,
+            {% endfor %} 
+            
+          </div>
+          <!-- END FOOTER -->
+
+        </div>
+        <!-- END THUMBNAIL -->
+
+      </div>
+      <!-- END COLUMN -->
+      {% endfor %}
+
+    </div>
+    <!-- END ROW -->
+    
   </div>
+  <!-- END WELL -->
+  
+  <div class="row"> <!-- ROW -->
+    <div class="col-md-12">
+      {% if is_paginated %}
+      {% if page_obj.has_previous %}
+      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+      <span>
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </span>
+      {% if page_obj.has_next %}
+      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
+      {% endif %}
+      {% endif %}
+    </div>
+  </div><!-- END ROW -->
+    
+  <div class="row"> <!-- ROW -->
+    <div class="col-md-12">
+      {% if is_paginated %}
+      {% if page_obj.has_previous %}
+      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+      <span>
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </span>
+      {% if page_obj.has_next %}
+      <a href="{% url 'chef:chefRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
+      {% endif %}
+      {% endif %}
+    </div>
+  </div><!-- END ROW -->
+  
+</div> <!-- END OF CONTAINER -->
 
 
-
-
+  
+<!--
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -56,6 +173,7 @@
         </div>
     </div>
   </div>
+-->
 {% endblock %} 
   
 {% block scripts %}

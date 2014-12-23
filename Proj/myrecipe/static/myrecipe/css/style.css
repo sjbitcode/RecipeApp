@@ -117,7 +117,7 @@ ul.nav a:hover {
     margin: 8px 15px 0 15px;
 }
 
-#updateMe:hover, .waitingfor:hover, .starttodaybutton:hover {
+#updateMe:hover, .waitingfor:hover, .starttodaybutton:hover, .hoverstyle:hover {
     transition: all 0.3s ease-in;
     background-color: #9B1F45 !important;
     color: #f6c347;
@@ -640,6 +640,10 @@ a {
   background-color: #F8F4F4;
   margin-top: 30px;
   border-color: #E0DEF5;
+}
+
+.listViewAuthor {
+  font-size: 20px;
 }
 
 

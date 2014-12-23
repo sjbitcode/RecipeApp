@@ -40,20 +40,24 @@
 
           <!-- START CAPTOPN -->
           <div class="caption greeting">
-            <h3>{{ recipe.shortenTitle }}</h3>
+            <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}"><h3>{{ recipe.shortenTitle }}</h3>
+            <a href="{% url 'chef:chef' recipe.author %}"><p class="listViewAuthor">by {{recipe.author}}</p></a>
             
             
             <p class="listView">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-square fa-stack-2x"></i>
-                <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon"></i>
-              </span>
+              <a href="{url 'myrecipe:singleRecipe' recipe.slug}">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
               
-              
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-square fa-stack-2x"></i>
-                <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon"></i>
-              </span>
+              <a>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
              </p>
             
             <!-- START ROW -->
@@ -81,8 +85,10 @@
           <!-- START FOOTER -->
           <div class="panel-footer">
             
+            <i class="fa fa-tag listViewIcon"></i>
+            
             {% for tag in recipe.threeTags %}
-              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>
+              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>,
             {% endfor %} 
             
           </div>
