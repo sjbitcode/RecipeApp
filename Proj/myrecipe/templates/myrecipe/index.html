@@ -50,7 +50,7 @@
           <div class="col-md-4 text-center boxes">
             <div class="box top-box-left">
               <i class="fa fa-lightbulb-o" id="lightbulb"></i>
-              <h4><a href="#">Think.</a></h4>
+              <h4><a href="{% url 'chef:dashboard' %}">Think.</a></h4>
               
             </div>
             <p id="FRow1stIcon">Gather some of your favorite recipes</p>
@@ -58,7 +58,7 @@
           <div class="col-md-4 text-center boxes">
             <div class="box top-box-center">
               <i class="fa fa-list" id="list"></i>
-              <h4><a href="#">Plan.</a></h4>
+              <h4><a href="{% url 'chef:dashboard' %}">Plan.</a></h4>
               
             </div>
             <p id="FRow2ndIcon">You will be documenting your recipes</p>
@@ -66,7 +66,7 @@
           <div class="col-md-4 text-center boxes">
             <div class="box top-box-right">
               <i class="fa fa-floppy-o" id="floppy"></i>
-              <h4><a href="#">Save.</a></h4>
+              <h4><a href="{% url 'chef:dashboard' %}">Save.</a></h4>
               
             </div>
             <p id="FRow3rdIcon">Save these recipes on your account</p>
@@ -78,7 +78,7 @@
           <div class="col-md-6 text-center boxes">
             <div class="box bottom-box-left">
               <i class="fa fa-search" id="lookingglass"></i>
-              <h4><a href="#">Browse.</a></h4>
+              <h4><a href="{% url 'myrecipe:AllRecipes' %}">Browse.</a></h4>
               
             </div>
             <p id="SRow1stIcon">Take a look at recipes from other users</p>

@@ -63,7 +63,7 @@ class DashboardView(LoginRequiredMixin, DetailView, ProcessFormView):
   """
   model = User
   template_name = "chef/dashboard.html"
-  limit_by = 10
+  limit_by = 5
   
   def get_context_data(self, **kwargs):
     """

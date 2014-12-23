@@ -35,6 +35,7 @@ src: url("../fonts/PrintClearly.otf") format("opentype");
     border-color: #F39D1E;
 }
 
+
 ul.nav a:hover { 
     color: #330712 !important; 
     -webkit-transition: 500ms linear 0s;
@@ -42,6 +43,7 @@ ul.nav a:hover {
     -o-transition: 500ms linear 0s;
     transition: 500ms linear 0s;
 }
+
 
 .redHalf > li a{
     color: #ffffff !important; 
@@ -84,7 +86,7 @@ ul.nav a:hover {
     padding-bottom: 110px;
 }
 
-.starttodaybutton {
+.starttodaybutton, #updateMe, .waitingfor {
     background-color: #ffffff;
     color: #605858;
     border-color: #E47531;
@@ -115,7 +117,7 @@ ul.nav a:hover {
     margin: 8px 15px 0 15px;
 }
 
-.starttodaybutton:hover {
+#updateMe:hover, .waitingfor:hover, .starttodaybutton:hover {
     transition: all 0.3s ease-in;
     background-color: #9B1F45 !important;
     color: #f6c347;
@@ -271,6 +273,7 @@ behavior: url(/pie/PIE.htc);
     padding-left: 38px;
 }
 
+/*
 .secondblock {
     background-color: #8ab447;
     background-size: 80px 50px;
@@ -285,7 +288,7 @@ background-image: linear-gradient(to top right, rgba(255, 255, 255, .2) 25%, tra
 behavior: url(/pie/PIE.htc);
 }
 
-/*
+
 #AboutVideo {
     height: 50%;
     width: 50%;
@@ -354,7 +357,7 @@ behavior: url(/pie/PIE.htc);
     -o-transition: 500ms linear 0s;
     transition: 500ms linear 0s;
 }
-
+/*
 .thirdblock {
     background-color: #d2881e;
     background: -moz-radial-gradient(white 15%, transparent 16%),
@@ -449,7 +452,8 @@ behavior: url(/pie/PIE.htc);
 #contactCol span {
     color: #F2F1F6 !important;
 }
-
+*/
+/*
 .bottomlinks {
     margin: 50px 0 0 0;
     font-family: PrintClearly;
@@ -465,7 +469,7 @@ behavior: url(/pie/PIE.htc);
 .bottomlinks a:hover {
     color: #45A2F1;
 }
-
+*/
 /*
 #lightbulb {
     color: #208E8E;
@@ -487,11 +491,7 @@ behavior: url(/pie/PIE.htc);
     color: #65A41B;
 }
 */
-
-a {
-    text-decoration: none !important;
-}
-
+/*
 a.glow:hover, a.glow:focus
 {
     text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff !important;
@@ -512,6 +512,7 @@ a.glow:hover, a.glow:focus
              0px 8px 13px rgba(14, 187, 255, 0.2),
              0px 18px 23px rgba(14, 187, 255, 0.2);
 }
+*/
 
 .centered {
   position: fixed;
@@ -531,7 +532,7 @@ a.glow:hover, a.glow:focus
 }
 
 a {
-  color: #ffffff;
+  text-decoration: none !important;
 }
 
 .nav-pills > .active > a:hover,.nav-pills > li > a:hover {
@@ -543,6 +544,64 @@ a {
   font-size: 30px;
   margin-bottom: 15px;
 }
+
+.nav-tabs {
+  margin-top: 30px;
+  font-family: PrintBold;
+  font-size: 20px;
+}
+
+/*
+.recipestatus {
+  margin-top: 30px;
+}
+*/
+
+.userNameDate, #userBio, .greeting, .aboutFormHeader, .panel-heading, .panel-footer, .favIngredField{
+  font-family: PrintBold;
+}
+
+.userNameDate {
+  font-size: 16px;
+}
+
+#lovecooking {
+  margin-top: -15px;
+}
+
+#aboutmewell, .panel-heading, .panel-footer  {
+  background-color: #DFE1EA !important;
+  border-color: #ffffff;
+}
+
+.list-group-item {
+  font-family: PrintClearly;
+  color: black;
+}
+
+.panel-heading, .panel-footer, .list-group-item, #userBio, .favIngredField{
+  font-size:20px;
+}
+
+#waiting {
+  font-family: PrintClearly;
+  font-size: 35px;
+}
+
+.badge {
+  background-color: #B45216;
+}
+
+.dashboardpage {
+  margin-bottom: 30px;
+}
+
+.greeting, .userNameDate, #waiting {
+  color: #86878D
+}
+
+
+
 
 
 
