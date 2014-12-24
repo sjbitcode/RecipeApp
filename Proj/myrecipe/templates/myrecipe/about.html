@@ -1,0 +1,60 @@
+{% extends 'myrecipe/_base.html' %}
+{% load staticfiles %}
+
+{% block title %}No Results{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <ul class="nav nav-tabs">
+        <li><a href="{% url 'chef:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
+        <li><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
+        {% if ifLikedByAny %}
+        <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+        {% endif %}
+        <li class="exploreTab active"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="well well-lg">
+    <div class="row">
+      
+      <div class="col-md-12">
+        <div class="jumbotron text-center">
+          <h1 class="error404"><i class="fa fa-quote-left"></i> A simple way to manage and collect your recipes <i class="fa fa-quote-right"></i></h1>
+          <p><a class="btn btn-primary btn-lg starttodaybutton" href="#" role="button">Learn more</a></p>
+        </div>
+      </div>
+      
+    </div>
+    
+    
+    <div class="row">
+      <div class="col-md-12">
+        <!-- FAQ HERE -->
+      </div>
+    </div>
+    
+    
+  </div>
+</div>
+    
+    
+  
+        
+{% endblock %}
+
+
+{% block scripts %}
+{% endblock %}

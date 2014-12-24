@@ -49,4 +49,7 @@ urlpatterns = patterns('',
   ### 404 ###
   url(r'^error404/$',  TemplateView.as_view(template_name = "myrecipe/error404.html"), name="error404"), 
                        
+  ### ABOUT ###
+  url(r'^about/$',  TemplateView.as_view(template_name = "myrecipe/about.html"), name="about"), 
+                       
 )
