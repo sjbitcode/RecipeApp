@@ -16,7 +16,7 @@ class Recipe(models.Model):
   notes = models.TextField(blank=True)
   pub_date = models.DateTimeField(auto_now_add = True)
   author = models.ForeignKey(User)
-  tags = TaggableManager()
+  tags = TaggableManager(blank = True)
   slug = models.SlugField()
   #http://stackoverflow.com/questions/4658747/django-related-name-for-field-clashes
   likes = models.ManyToManyField(User, blank = True, related_name = "favoriter")

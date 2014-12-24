@@ -603,7 +603,7 @@ a {
   margin-bottom: 30px;
 }
 
-.greeting, .userNameDate, #waiting {
+.greeting, .userNameDate, #waiting, .addrecipetitle, .subheading {
   color: #86878D
 }
 
@@ -674,6 +674,54 @@ a {
 .page a {
   color: #ffffff;
 }
+
+.subpills {
+  margin-left: 10px;
+  margin-top:20px;
+  font-family: PrintClearly;
+  font-size: 18px;
+}
+
+.subpills>li.active>a, .subpills>li.active>a:hover, .subpills>li.active>a:focus {
+  color: #FFFFFF;
+  background-color: #B7C6DE;
+}
+
+/*
+.nav-pills>li.active>a:hover {
+    background-color: #E19020;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+color: #FFF;
+background-color: #A74770;
+}
+*/
+
+.norecipeswarning {
+  font-family: PrintClearly;
+  font-size: 25px;
+  color: #E19020;
+}
+
+.addrecipetitle {
+  font-family: PrintClearly;
+  font-size: 35px;
+}
+
+.subheading {
+  font-family: PrintClearly;
+  font-size: 30px;
+}
+
+.form-group, .form-inline, .form-control, #title, #tags-tokenfield {
+  font-family: PrintBold;
+  /*font-size: 25px;*/
+  color: #E19020;
+  /*height: inherit;*/
+}
+
+
 
 
 

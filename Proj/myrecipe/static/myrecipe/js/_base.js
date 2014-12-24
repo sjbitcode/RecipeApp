@@ -50,9 +50,23 @@ utils.comboAlert = function(x) {
 };
 
 // Takes a message, appends it to success box, and shows the success box.
-utils.comboSuccess = function(x) {
+utils.comboSuccess = function(x) {window.xx = x;
+  x = x.msg || x;
   utils.clearAll();
   $("#successBoxInner").html("");
   $("<p>").text(x).appendTo("#successBoxInner");
   utils.showSuccess();
 };
+
+// Make #alertBox fadeOut (not destroy) on 'x' click.
+$(document).ready(function() {
+  $("#alertBox button.close").click(function(e) {
+    e.preventDefault();
+    $("#alertBox").fadeOut();
+  });
+  $("#successBox button.close").click(function(e) {
+    e.preventDefault();
+    $("#successBox").fadeOut();
+  });
+});
+

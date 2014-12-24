@@ -93,7 +93,7 @@
           </a>
           {% endfor %}
           {% else %}
-          <div class="panel-content">no recipes</div>
+          <div class="panel-content norecipeswarning text-center">no recipes</div>
           {% endif %}
         </div> <!-- end of list-group -->
         <div class="panel-footer clearfix"><a class="pull-right" href="{% url 'chef:chefRecipes' %}">View all</a></div>
@@ -123,7 +123,7 @@
           </a>
           {% endfor %}
           {% else %}
-          <div class="panel-content">no liked recipes</div>
+          <div class="panel-content norecipeswarning text-center">no liked recipes</div>
           {% endif %}
         </div> <!-- end of list-group -->
         

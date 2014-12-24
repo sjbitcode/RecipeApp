@@ -29,7 +29,7 @@
 
      <div class="row">
      <div class="col-md-12">
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills subpills">
       <li><a href="{% url 'chef:chefRecipes' %}">All Recipes</a></li>
       <li class="active"><a href="#">Add Recipe</a></li>
       <li><a href="{% url 'myrecipe:modify' %}">Modify Recipe</a></li>
@@ -54,7 +54,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
       
       <ul class="list-unstyled">
-        <li><div><h2>Add a Recipe</h2></div></li>
+        <li><div><h2 class="addrecipetitle">Add a Recipe</h2></div></li>
       </ul>
       
     </div>
@@ -116,7 +116,7 @@
       
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="well subheading-top">
+      <div class="well subheading-top"> 
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Other Details</h3></li>
           <li class="subheading2">
@@ -157,7 +157,7 @@
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv">
-      <h3>Tags</h3>
+      <h3 class="subheading">Tags</h3>
       <input id="tags" name="tags" type="text" placeholder=" separate tags by commas"
              value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
     </div>
@@ -166,8 +166,12 @@
       
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 bottomTags submitButton">
-      <input type="submit" id="recipeAddSubmiButton" class="btn btn-lg btn-primary" value="Add Recipe">
+    <input type="submit" id="recipeAddSubmiButton" class="btn btn-lg btn-primary starttodaybutton text-center" value="Add Recipe">
     </div>
+    
+   
+      
+    
   </div> <!-- /.row -->
   
       

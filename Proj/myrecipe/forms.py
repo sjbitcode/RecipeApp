@@ -6,6 +6,11 @@ from django.utils.text import slugify
 MAX_TAGS = 12
 
 class RecipeForm(forms.ModelForm):
+  title = forms.CharField(error_messages = {"required": "You must enter a title."})
+  yieldAmt = forms.CharField(error_messages = {"required": "A recipe must have a Yield Amount."})
+  cookTime = forms.CharField(error_messages = {"required": "A Recipe must have a Cook Time."})
+  prepTime = forms.CharField(error_messages = {"required": "A recipe must have a Preparation time amount."})
+  
   class Meta:
     model = Recipe
     exclude = ['author', 'pub_date', 'slug', 'ingredString', 'fav']

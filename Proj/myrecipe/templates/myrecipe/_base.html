@@ -25,7 +25,7 @@
     {% block styles %}
     {% endblock %}
     <style>
-      #alertBox {
+      #alertBox, #successBox {
         display: none;
       }
     </style>
@@ -90,9 +90,20 @@
      <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <div id="alertBox" class="alert alert-danger alert-dismissible fade in" role="alert">
+          <div id="alertBox" class="alert alert-danger alert-dismissible fade in listView" role="alert">
             <button type="button" class="close" data-fdismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <div id="alertBoxInner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div id="successBox" class="alert alert-info alert-dismissible fade in listView" role="alert">
+            <button type="button" class="close" data-fdismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <div id="successBoxInner"></div>
           </div>
         </div>
       </div>

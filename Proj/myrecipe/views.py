@@ -65,7 +65,7 @@ def ProcessLikes(request):
           liked = True
           print "user liked it, likes:" + str(recipe.likes.count())
         success = True
-        msg = "was success!"
+        msg = "You liked this Recipe!"
       except: 
         msg = "Recipe does not exist"
     else:
