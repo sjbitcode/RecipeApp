@@ -13,9 +13,8 @@
       <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
       <li><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
       {% if ifLikedByAny %}
-      <li class="active"><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+        <li class="active"><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
       {% endif %}
-      
        <li class="exploreTab"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
     </ul>
      </div>
@@ -25,124 +24,58 @@
 
 
 <div class="container"> <!-- CONTAINER -->
-  <div class="row"> <!-- ROW -->
-    
-    <!--
-    <div class="col-md-12"> 
-    {% for recipe in object_list %}
-      {% if recipe.likes.exists %}
-        <h3>{{ recipe.title }}</h3>
-      
-      
-        <ul>
-        {% for u in recipe.likes.all %}
-          {% ifequal u user %}
-            <li>me</li>
-          {% else %}
-            <li>{{ u }}</li>
-          {% endifequal %}
-        {% endfor %}
-       </ul>
-      
-      
-      
-      {% endif %}
-    {% endfor %}-->
-  </div> <!-- END ROW -->
-</div> <!-- END COLUMN -->
-    
-    
-    
-    
+  <div class="well well-lg">  <!--WELL -->
+    <div class="row"> <!-- ROW -->
+      <div class="col-md-12">
 
-    {% for recipe in object_list %}
-      {% if recipe.likes.exists %}
-      <!-- START  RECIPE BLOCK COLUMN -->
-      <div class="col-xs-6 col-md-3">
+        {% for recipe in object_list %}
+        {% if recipe.likes.exists %}
+        <div class="panel panel-default">
+            <div class="panel-heading wholikedheading">
 
-        <!-- START THUMBNAIL -->
-        <div class="thumbnail">
+              <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}</a>
 
-          <!-- START CAPTOPN -->
-          <div class="caption greeting">
-            <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}"><h3>{{ recipe.shortenTitle }}</h3>
-            <a href="{% url 'chef:chef' recipe.author %}"><p class="listViewAuthor">by {{recipe.author}}</p></a> 
-            
-            
-            <p class="listView">
-              <a href="{url 'myrecipe:singleRecipe' recipe.slug}">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-square fa-stack-2x"></i>
-                  <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
-                </span>
-              </a>
-              
-              <a>
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-square fa-stack-2x"></i>
-                  <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
-                </span>
-              </a>
-             </p>
-            
-            <!-- START ROW -->
-            
-                <span class="badge listView">
+              <div class="pull-right">
+                <span class="badge">
                   {{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}
                 </span>
-           
-                <span class="badge listView">
+
+                <span class="badge">
                   <i class="fa fa-thumbs-up "></i>
                   {{ recipe.likes.count }}
                 </span>
-            
-               <span class="badge listView">
-                  <i class="fa fa-clock-o "></i>
-                  {{ recipe.totalTime }} min.
-                </span>
-                
-            
-            <!-- END ROW -->
-            
-          </div>
-          <!-- END CAPTOPN -->
+              </div>
 
-          <!-- START FOOTER -->
-          <div class="panel-footer">
-            
-            <i class="fa fa-tag listViewIcon"></i>
-            
-            {% for tag in recipe.threeTags %}
-              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>,
-            {% endfor %} 
-            
-          </div>
-          <!-- END FOOTER -->
+            </div>
+            <div class="panel-body">
+              <h3>
+                {% for u in recipe.likes.all %}
+                  {% ifequal u user %}
+                    <a href="{% url 'chef:chef' u.username %}"><span class="label liked label-default"><i class="fa fa-user"></i> me</span></a>
+                  {% else %}
+                    <a href="{% url 'chef:chef' u.username %}"><span class="label liked label-default"><i class="fa fa-user"></i> {{ u }}</span></a>
+                  {% endifequal %}
+                {% endfor %}
+              </h3>
+            </div>
 
         </div>
-        <!-- END THUMBNAIL -->
+       {% endif %}
+       {% endfor %}
 
-      </div>
-      <!-- END RECIPE BLOCK COLUMN COLUMN -->
-        
-        
-      <div class="col-md-9">
-        {% for u in recipe.likes.all %}
-          {% ifequal u user %}
-            <p>me</p>
-          {% else %}
-            <p>{{ u }}</p>
-          {% endifequal %}
-        {% endfor %}
-      </div>
-        {% endif %}
-      {% endfor %}
-      
-      
+
+
+
+      </div> <!-- END OF COLUMN -->
+    </div> <!-- END OF ROW -->
+  </div>  <!--END OF WELL -->
+</div> <!-- END OF CONTAINER -->
     
     
-  </div>
-</div>
+    
+    
+
+    
 
 
 

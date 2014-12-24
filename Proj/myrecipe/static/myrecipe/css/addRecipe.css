@@ -1,0 +1,23 @@
+
+.subheading-group .fa-plus-square {
+  font-size: 26px;
+  cursor: pointer;
+  color: #69B663;
+  vertical-align: bottom;
+}
+
+.ingredientsField, .methodField {
+  margin-bottom: 15px;
+}
+
+#ingredients li, #method li {
+  position: relative;
+}
+
+.fieldCloseButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 7px;
+  margin-top: 4px;
+}

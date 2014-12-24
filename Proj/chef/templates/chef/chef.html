@@ -1,44 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Chef</title>
-	<!--[if IE]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-  
-<body>
-  <h1>Viewing Chef {{ object.username }}:</h1>
-  <p>Joined on {{ object.date_joined|date:'M d, Y' }}</p>
-  <br>
-  
-  <h3>{{ object.userprofile.bio }}</h3>
-  
-  {% if hasFavIngred %}
-    <h3>Ingredients I like, like alot</h3>
-    {% if object.userprofile.favIngredients.favIngredients.0 %}
-    <h4>{{ object.userprofile.favIngredients.favIngredients.0 }}</h4>
-    {% endif%}
+{% extends 'myrecipe/_base.html' %}
+{% load staticfiles %}
 
-    {% if object.userprofile.favIngredients.favIngredients.1 %}
-    <h4>{{ object.userprofile.favIngredients.favIngredients.1 }}</h4>
-    {% endif%}
+{% block title %}Profile View{% endblock %}
 
-    {% if object.userprofile.favIngredients.favIngredients.2 %}
-    <h4>{{ object.userprofile.favIngredients.favIngredients.2 }}</h4>
-    {% endif%}
-  {% endif %}
+{% block styles %}
+{% endblock %}
   
+
+
+{% block main %}
+
+ <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
+      <li><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
+      
+      {% if ifLikedByAny %}
+      <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+      {% endif %}
+      
+      <li class="exploreTab active"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
+    </ul>
+        </div>
+    </div>
+  </div>
+
+
+<div class="container dashboardpage">
   
-  
-  <h2>Recent Recipes:</h2>
-  <div id="" class="">
-      {% for object in recentRecipes %}
-    <p><a href="{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a></p>
-      {% endfor %}
+  <div class="row">
+     <div class="col-md-6">
+      <!-- USERNAME, DATE JOINED, LAST LOGIN -->
+       <h1 class="greeting"><i class="fa fa-user"></i> Chef {{ object.username }}</h1>
+      <p class="userNameDate">Joined {{ object.date_joined|date:'M d, Y' }}<p>
+      <!-- -->
+    </div>
   </div>
   
-</body>
   
-</html>
+  <div class="row">
+    
+
+      
+    <div class="col-md-6">
+     <!-- BIO, THREE FAVORITE INGREDIENTS (IF ANY) -->
+     
+       <div class="well" id="aboutmewell">
+         <h3 class="aboutFormHeader">About me</h3>
+         <div class="userBioPublic text-center">
+           <i class="fa fa-quote-left"></i>  
+           <span>{{ object.userprofile.bio }}</span> 
+           <i class="fa fa-quote-right"></i>
+         </div>
+
+         <br><br><br><!--placeholder="{{ user.userprofile.bio }}"-->
+         
+        
+         
+         {% if hasFavIngred %}
+         <h3 class="aboutFormHeader" id="loveCooking">I love cooking with</h3>
+           {% if object.userprofile.favIngredients.favIngredients.0 %}
+          <input type="text" class="form-control favIngredField" id="favIngred1" placeholder="{{ object.userprofile.favIngredients.favIngredients.0 }}"></input> <br>
+           {% endif %}     
+ 
+          {% if object.userprofile.favIngredients.favIngredients.1 %}
+          <input type="text" class="form-control favIngredField" id="favIngred2" placeholder="{{ object.userprofile.favIngredients.favIngredients.1 }}"></input> <br>
+          {% endif %}
+    
+          {% if object.userprofile.favIngredients.favIngredients.2 %}
+          <input type="text" class="form-control favIngredField" id="favIngred3" placeholder="{{ object.userprofile.favIngredients.favIngredients.2 }}"></input> <br>
+          {% endif %}
+        {% endif %}
+       </div>
+     
+
+ 
+    </div>
+
+
+
+    <div class="col-md-6 recipestatus">
+      <!-- RECENT RECIPES -->
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Recently Made Recipes</div>
+        
+        <div class="list-group">
+          {% if recentRecipes %}
+          {% for r in recentRecipes %}
+          <a class="list-group-item" href="{% url 'myrecipe:singleRecipe' r.slug %}">{{ r.title }}
+          
+            <span class="badge">
+            {{ r.pub_date |date:'m/d/Y' }}
+            </span>
+            <span class="badge">
+            <i class="fa fa-thumbs-up "></i>
+            {{ r.likes.count }}
+            </span>
+          
+          </a>
+          {% endfor %}
+          {% else %}
+          <div class="panel-content">no recipes</div>
+          {% endif %}
+        </div> <!-- end of list-group -->
+        <!--<div class="panel-footer clearfix"><a class="pull-right" href="{% url 'chef:chefRecipes' %}">View all</a></div>-->
+      </div>
+      <!-- -->
+      
+      
+      <div class="text-center">
+        <h3 id="waiting">What are you waiting for?</h3> <br>
+        
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default waitingfor" href="{% url 'myrecipe:AllRecipes' %}">browse</button>
+        </div>
+      </div>
+      
+    </div>
+
+    
+  </div>
+  <!-- END ROW -->
+</div>
+<!-- END CONTAINER -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+  
+{% block scripts %}
+{% endblock %}

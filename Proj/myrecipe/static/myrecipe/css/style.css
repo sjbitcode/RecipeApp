@@ -592,7 +592,7 @@ a {
   background-color: #DB7E54;
   background-color: #CB957D;
   background-color: #E6587E;
-  background-color: #E68558;
+  background-color: #E68558 !important;
 }
 
 .listView {
@@ -644,6 +644,26 @@ a {
 
 .listViewAuthor {
   font-size: 20px;
+}
+
+.liked {
+  background-color: #AC1851 !important;
+  font-family: PrintClearly !important;
+  font-size: 25px;
+}
+
+.wholikedheading {
+  background-color: #FBF2E2 !important;
+}
+
+.userBioPublic {
+  font-family: PrintClearly;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.fa-quote-left, .fa-quote-right {
+  color: #E68558;
 }
 
 
