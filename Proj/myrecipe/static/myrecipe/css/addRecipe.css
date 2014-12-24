@@ -1,4 +1,8 @@
 
+.well {
+  /*background-color: #E9DCF5;*/
+}
+
 .subheading-group .fa-plus-square {
   font-size: 26px;
   cursor: pointer;
@@ -21,3 +25,8 @@
   margin-right: 7px;
   margin-top: 4px;
 }
+
+.submitButton {
+  margin-top: 30px;
+}
+

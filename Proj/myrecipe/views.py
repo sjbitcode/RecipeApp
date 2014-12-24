@@ -236,6 +236,7 @@ class Modify(ListView):
     """
     return self.request.user.recipe_set.all()
   
+  
 class SingleRecipe(RecipeIMList, DetailView):
   model = Recipe
   template_name = "myrecipe/SingleRecipe.html"

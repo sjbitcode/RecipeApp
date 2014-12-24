@@ -53,7 +53,7 @@
      {% csrf_token %}
        <div class="well" id="aboutmewell">
          <h3 class="aboutFormHeader">About me</h3>
-         <textarea type="text" class="form-control" rows="5" id="userBio" value="{{ user.userprofile.bio }}"></textarea>
+         <textarea type="text" class="form-control" rows="5" id="userBio" value="{{ user.userprofile.bio|safe }}"></textarea>
          <h6 id="text_counter" class="pull-right">300 characters remaining</h6>
 
          <br><br><br><!--placeholder="{{ user.userprofile.bio }}"-->
@@ -135,15 +135,15 @@
         <h3 id="waiting">What are you waiting for?</h3> <br>
         
         <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default waitingfor" href="{% url 'myrecipe:addRecipe' %}">add</button>
+          <a href="{% url 'myrecipe:addRecipe' %}"><button type="button" class="btn btn-default waitingfor">add</button></a>
       
           <!-- IF LIKED BY ANY -->
           {% if ifLikedByAny %}
-           <button type="button" class="btn btn-default waitingfor" href="{% url 'chef:wholiked' %}">who liked</button>
+           <a href="{% url 'chef:wholiked' %}"><button type="button" class="btn btn-default waitingfor">who liked</button></a>
           {% endif %}
           <!-- -->
              
-          <button type="button" class="btn btn-default waitingfor" href="{% url 'myrecipe:AllRecipes' %}">browse</button>
+          <a href="{% url 'myrecipe:AllRecipes' %}"><button type="button" class="btn btn-default waitingfor">browse</button></a>
         </div>
       </div>
       
