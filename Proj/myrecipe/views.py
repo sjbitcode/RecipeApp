@@ -9,6 +9,7 @@ from django.db.models import Q
 from myrecipe.forms import RecipeForm
 from myrecipe.models import Recipe
 import json, itertools, operator
+from chef.views import UserHasLikes
 
 def gatherQuery(userSearch):
   '''
@@ -101,7 +102,7 @@ class SearchView(ListView):
     """
     self.object_list = self.get_queryset()
     if not self.object_list:
-      return HttpResponseRedirect(reverse("myrecipe:noResults"))
+      return HttpResponseRedirect("%s?recipeQuery=%s" %(reverse("myrecipe:noResults"), self.userSearchString))
     
     return super(SearchView, self).get(request, *args, **kwargs)
   
@@ -114,11 +115,11 @@ class SearchView(ListView):
     if hasattr(self, "object_list"):
       return self.object_list
     
-    userSearchString = self.request.GET.get("recipeQuery", None)
+    self.userSearchString = self.request.GET.get("recipeQuery", None)
     
-    if not userSearchString:
+    if not self.userSearchString:
       return None
-    recipeq = gatherQuery(userSearchString)
+    recipeq = gatherQuery(self.userSearchString)
     
     return recipeq
 
@@ -220,6 +221,12 @@ class RecipeList(ListView):
   queryset = Recipe.objects.order_by('-pub_date')
   paginate_by = 10
   page_kwarg = "page"
+  
+  def get_context_data(self, **kwargs):
+    context = super(RecipeList, self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
 
 class Modify(ListView):
   """
@@ -235,6 +242,12 @@ class Modify(ListView):
     Return the list of user's Recipes.
     """
     return self.request.user.recipe_set.all()
+  
+  def get_context_data(self, **kwargs):
+    context = super(Modify , self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
   
   
 class SingleRecipe(RecipeIMList, DetailView):
@@ -259,6 +272,12 @@ class EditRecipe(RecipeIMList, DetailView):
 class NewRecipeView(LoginRequiredMixin, TemplateView):
   def get(self, request, *args, **kwargs):
     return super(NewRecipeView, self).get(request, *args, **kwargs)
+  
+  def get_context_data(self, **kwargs):
+    context = super(NewRecipeView, self).get_context_data(**kwargs)
+    if UserHasLikes(self.request.user):
+      context["ifLikedByAny"] = True
+    return context
   
   
  

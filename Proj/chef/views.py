@@ -51,9 +51,10 @@ class PublicChefView(DetailView):
 ########################################
 # Function to see if user has any recipes with any likes
 def UserHasLikes(user):
-  for r in user.recipe_set.all():
-    if r.likes.exists():
-      return True
+  if user and not user.is_anonymous():
+    for r in user.recipe_set.all():
+      if r.likes.exists():
+        return True
   return False
 ########################################
 

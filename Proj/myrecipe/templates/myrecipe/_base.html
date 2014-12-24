@@ -55,7 +55,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right yellowHalf">
             {% if user.is_authenticated %}
-            <li><button type="button" class="btn btn-default navbar-btn">Logout</button></li>
+            <li><button id="base-logout-button" data-href="{% url 'logout' %}" type="button" class="btn btn-default navbar-btn"><strong>Logout</strong></button></li>
             {% else %}
             <li><button type="button" class="btn btn-default navbar-btn">Sign in</button></li>
             {% endif %}
@@ -66,7 +66,7 @@
     </nav>
     <!-- END OF NAV BAR -->
     
-    {%if user.is_authenticated%}
+    {% if user.is_authenticated %}
     <nav class="navbar navbar-default secondnav text-center" role="navigation">
      <div class="container">
        
@@ -74,14 +74,14 @@
             <li><a href="{% url 'chef:dashboard' %}" id="chefname"><i class="fa fa-user"></i> Chef {{ user.username }}</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form" role="search">
-          <div class="input-group">
-            <input type="text" class="form-control" style="font-family:PrintClearly;font-size:20px;" placeholder="search" name="q">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-           </div>
-         </form>
+            <form class="navbar-form" role="search" action="{% url 'myrecipe:search' %}" method="GET">
+              <div class="input-group">
+                <input type="text" class="form-control" style="font-family:PrintClearly;font-size:20px;" placeholder="search" name="recipeQuery">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+           </form>
           </ul>
       </div>
     </nav>
@@ -180,6 +180,13 @@
     <script type="application/octet-stream" src="{% static 'myrecipe/js/underscore-min.map' %}"></script>
     
     <script type="text/javascript" src="{% static 'myrecipe/js/_base.js' %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#base-logout-button").click(function() {
+          window.location = $(this).data("href");
+        });
+      });
+    </script>
     
     {% block scripts %}
     {% endblock %}

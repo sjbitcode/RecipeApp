@@ -23,9 +23,9 @@
           </div>
           -->
       
-          <form class="navbar-form" role="search">
+          <form action="{% url 'myrecipe:search' %}" class="navbar-form" role="search" method="GET">
             <div class="input-group">
-              <input type="text" class="form-control" style="font-family:PrintClearly;font-size:20px;" placeholder="search" name="q">
+              <input type="text" class="form-control" style="font-family:PrintClearly;font-size:20px;" placeholder="search" name="recipeQuery">
               <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </div>
