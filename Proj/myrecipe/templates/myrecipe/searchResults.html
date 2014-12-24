@@ -1,51 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Search Results</title>
-	<!--[if IE]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-  
-<body>
-  
-  <!--
-    <ul>
-      {% for object in object_list %}
-      <li> <a href = "{% url 'myrecipe:singleRecipe' object.slug %}">{{ object.title }}</a> </li>
-      {% endfor %}
-    </ul>
-   -->
-  
-  
-  {% for recipe in object_list %}
-      <div style="border: 1px solid black;">
-      <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">{{ recipe.title }}<a>
-      <p>{{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}</p>
-      <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ recipe.author }}</a>
+{% extends 'myrecipe/_base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
       
-      <p>{{recipe.likes.count}} likes</p>
-      {% for tag in recipe.tags.all %}
-      <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag.name }}">{{ tag.name }}</a>
-      {% endfor %}  
+      <ul class="nav nav-tabs">
+        <li><a href="{% url 'chef:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'chef:chefRecipes' %}">My Recipes</a></li>
+        <li><a href="{% url 'chef:chefFavorites' %}">My Favorites</a></li>
+        {% if ifLikedByAny %}
+        <li><a href="{% url 'chef:wholiked' %}">Who Liked</a></li>
+        {% endif %}
+        <li class="exploreTab active"><a href="{% url 'myrecipe:AllRecipes' %}">Explore</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</div>
+
+
+  
+<div class="container">
+  <div class="well well-lg">
+    
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <i class="fa fa-quote-left"></i> {{ request.GET.recipeQuery }} <i class="fa fa-quote-right"></i>
+          </div>
+        </div>
+       </div>
+    </div>
+    
+    <div class="row">
+      {% for recipe in object_list %}
+      <!-- START COLUMN -->
+      <div class="col-xs-6 col-md-3">
+
+        <!-- START THUMBNAIL -->
+        <div class="thumbnail">
+
+          <!-- START CAPTOPN -->
+          <div class="caption greeting">
+            <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}"><h3>{{ recipe.shortenTitle }}</h3>
+            <a href="{% url 'chef:chef' recipe.author %}"><p class="listViewAuthor">by {{recipe.author}}</p></a>
+            
+            
+            <p class="listView">
+              <a href="{% url 'myrecipe:singleRecipe' recipe.slug %}">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-eye fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+              
+              <a>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-thumbs-up fa-stack-1x fa-inverse listViewIcon hoverstyle"></i>
+                </span>
+              </a>
+             </p>
+            
+            <!-- START ROW -->
+            
+                <span class="badge listView">
+                  {{ recipe.pub_date|date:"SHORT_DATE_FORMAT" }}
+                </span>
+           
+                <span class="badge listView">
+                  <i class="fa fa-thumbs-up "></i>
+                  {{ recipe.likes.count }}
+                </span>
+            
+               <span class="badge listView">
+                  <i class="fa fa-clock-o "></i>
+                  {{ recipe.totalTime }} min.
+                </span>
+                
+            
+            <!-- END ROW -->
+            
+          </div>
+          <!-- END CAPTOPN -->
+
+          <!-- START FOOTER -->
+          <div class="panel-footer">
+            
+            <i class="fa fa-tag listViewIcon"></i>
+            
+            {% for tag in recipe.threeTags %}
+              <a href="{% url 'myrecipe:search' %}?recipeQuery={{ tag }}">{{ tag }}</a>,
+            {% endfor %} 
+            
+          </div>
+          <!-- END FOOTER -->
+
+        </div>
+        <!-- END THUMBNAIL -->
+
       </div>
-    {% endfor %}
+      <!-- END COLUMN -->
+      {% endfor %}
   
- 
-  {% if is_paginated %}
-    {% if page_obj.has_previous %}
-      <a href="{% url 'myrecipe:search' %}?page={{ page_obj.previous_page_number }}&recipeQuery={{ recipeQuery }}">Previous</a>
-    {% endif %}
-    <span>
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-    </span>
-    {% if page_obj.has_next %}
-      <a href="{% url 'myrecipe:search' %}?page={{ page_obj.next_page_number }}&recipeQuery={{ recipeQuery }}">Next</a>
-    {% endif %}
-  {% endif %}
+        
+    </div> <!-- END ROW -->
+  </div> <!-- END WELL -->
+</div> <!-- END CONTAINER -->
+{% endblock %} 
+        
+{% block scripts %}
+{% endblock %}
   
   
-</body>
-  
-</html>

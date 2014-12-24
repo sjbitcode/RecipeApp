@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills subpills">
         <li class="active"><a href="#">All Recipes</a></li>
         <li><a href="{% url 'myrecipe:addRecipe' %}">Add Recipe</a></li>
         <li><a href="{% url 'myrecipe:modify' %}">Modify Recipe</a></li>
@@ -93,7 +93,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
       
       <ul class="list-unstyled">
-        <li><div><h2>{{ object.title }}&nbsp;&nbsp;<span id="recipeLikeButton" class="badge singleBadge"><i class="fa fa-thumbs-up"></i></span></h2></div></li>
+        <li><div><h2 class="addrecipetitle">{{ object.title }}&nbsp;&nbsp;<span id="recipeLikeButton" class="badge singleBadge"><i class="fa fa-thumbs-up"></i></span></h2></div></li>
         <li><div><p>added by: <strong><a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></strong></p></div></li>
       </ul>
       
@@ -105,7 +105,7 @@
       <div class="well subheading-top">
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Ingredients</h3></li>
-          <li class="subheading2"><h3><small>Servings: {{ object.yieldAmt }}</small></h3></li>
+          <li class="subheading2"><h3><small>Servings: <strong>{{ object.yieldAmt }}</strong></small></h3></li>
         </ul>
       </div>
     </div>
@@ -115,7 +115,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <ul class="list-unstyled sublist">
           {% for key, value in ingredList %}
-          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;{{ value }}</p></li>
+          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;<span class="singleIngMethod">{{ value }}</span></p></li>
           {% endfor %}
         </ul>
     </div>
@@ -141,7 +141,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <ul class="list-unstyled sublist">
           {% for key, value in methodList %}
-          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;{{ value }}</p></li>
+          <li><p><em class="text-muted">{{ key }}.</em>&nbsp;&nbsp;&nbsp;<span class="singleIngMethod">{{ value }}</span></p></li>
           {% endfor %}
         </ul>
     </div>
@@ -149,16 +149,16 @@
   
   
   {% if object.notes %}
-  <div class="row">
+  <div class="row text-center">
     <div class="col-md-12 col-sm-12 col-xs-12 notes subheading-top tagsDiv">
-      <h3>Notes:&nbsp;&nbsp;<span class="text-muted">{{ object.notes }}</span></h3>
+      <i class="fa fa-quote-left"></i>&nbsp;<span class="text-muted singleNotes">{{ object.notes }}</span>&nbsp;<i class="fa fa-quote-right"></i>
     </div>
   </div> <!-- /.row -->
   {% endif %}
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv bottomTags">
-      <h3>Tags</h3>
+      <h3 class="subheading">Tags</h3>
       <input id="tags" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
     </div>
   </div> <!-- /.row -->

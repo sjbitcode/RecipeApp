@@ -44,6 +44,9 @@ urlpatterns = patterns('',
   url(r'^/?$',  TemplateView.as_view(template_name = "myrecipe/index.html"), name="index"),
                                  
   ### BASE HTML PAGE ###
-  url(r'^base?$',  TemplateView.as_view(template_name = "myrecipe/_base.html"), name="base"),                   
+  url(r'^base?$',  TemplateView.as_view(template_name = "myrecipe/_base.html"), name="base"), 
+                      
+  ### 404 ###
+  url(r'^error404/$',  TemplateView.as_view(template_name = "myrecipe/error404.html"), name="error404"), 
                        
 )

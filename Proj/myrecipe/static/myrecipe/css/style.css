@@ -604,7 +604,7 @@ a {
 }
 
 .greeting, .userNameDate, #waiting, .addrecipetitle, .subheading {
-  color: #86878D
+  color: #86878D;
 }
 
 .exploreTab {
@@ -709,7 +709,7 @@ background-color: #A74770;
   font-size: 35px;
 }
 
-.subheading {
+.subheading, .singleNotes {
   font-family: PrintClearly;
   font-size: 30px;
 }
@@ -720,6 +720,30 @@ background-color: #A74770;
   color: #E19020;
   /*height: inherit;*/
 }
+
+small {
+  font-family: PrintClearly;
+  font-size: 20px !important; 
+}
+
+.singleIngMethod {
+  font-family: PrintClearly !important;
+  font-size: 20px;
+  color: #86878D;
+}
+
+.error404 {
+  font-family: PrintClearly;
+  color: #86878D;
+  margin-bottom: 70px;
+}
+
+.jumbotron {
+  background-color: #F8F4F4;
+  margin: 50px 0 50px 0;
+}
+
+
 
 
 
