@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.subheading-top {
+  margin-top: 30px;
+}
+
 .subheading {
   
 }
@@ -25,5 +29,9 @@
 
 .tagsDiv h3 {
   margin-left: 19px;
+}
+
+.bottomTags {
+  margin-bottom: 50px;
 }
 

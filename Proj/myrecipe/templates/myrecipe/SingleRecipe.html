@@ -73,11 +73,17 @@
 <div class="container">
   
   <div class="row">
+    <div class="col-md-1"></div>
+    
+    <div class="col-md-10 col-sm-12 col xs-12">
+      <!-- stonewall -->
+      
+       <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
       
       <ul class="list-unstyled">
         <li><div><h2>{{ object.title }}</h2></div></li>
-        <li><div><p>added by: <a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></p></div></li>
+        <li><div><p>added by: <strong><a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></strong></p></div></li>
       </ul>
       
     </div>
@@ -85,7 +91,7 @@
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="well">
+      <div class="well subheading-top">
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Ingredients</h3></li>
           <li class="subheading2"><h3><small>Servings: {{ object.yieldAmt }}</small></h3></li>
@@ -106,13 +112,13 @@
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="well">
+      <div class="well subheading-top">
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Method</h3></li>
           <li class="subheading2">
             <ul class="list-unstyled list-inline">
-              <li><h3><small>Prep time: {{ object.prepTime }}</small></h3></li>
-              <li><h3><small>Cook time: {{ object.cookTime }}</small></h3></li>
+              <li><h3><small>Prep time: <strong>{{ object.prepTime }} min.</strong></small></h3></li>
+              <li><h3><small>Cook time:  <strong>{{ object.cookTime }} min.</strong></small></h3></li>
             </ul>
           </li>
         </ul>
@@ -133,78 +139,29 @@
   
   {% if object.notes %}
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 notes">
+    <div class="col-md-12 col-sm-12 col-xs-12 notes subheading-top tagsDiv">
       <h3>Notes:&nbsp;&nbsp;<span class="text-muted">{{ object.notes }}</span></h3>
     </div>
   </div> <!-- /.row -->
   {% endif %}
   
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv">
+    <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv bottomTags">
       <h3>Tags</h3>
       <input id="tags" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
     </div>
   </div> <!-- /.row -->
+      
+      <!-- stonewall -->
+    </div>
+    
+    <div class="col-md-1"></div>
+  </div>
+    
+  
+ 
   
 </div> <!-- /.container -->
-
-<div class="container">
-  <h2>viewing {{ object.title }}</h2>
-  <p>
-    Added on {{ object.pub_date | date:"M d, Y" }} by <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ object.author }}</a>
-  </p>
-  <p>Prep Time: {{ object.prepTime }}</p>
-  <p>Cook Time: {{ object.cookTime }}</p>
-  <p>Total Time: {{ object.totalTime }}</p>
-  <h4>yields {{ object.yieldAmt }}</h4>
-  <div id="ingredients">
-    <p>Ingredients</p>
-    <ul>
-      {% for key, value in ingredList %}
-      <li>{{ key }} : {{ value }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div id="methods">
-    <p>Method</p>
-    <ul>
-      {% for key, value in methodList %}
-      <li>{{ key }} : {{ value }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% if object.notes %}
-  <p>notes : {{ object.notes }}</p>
-  {% endif %}
-  
-  
-  
-  <h3>Tags</h3>
-   <input id="tagss" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
-    
-  <input id="testingInput" value="this is a test"><br>
-   
-
-  <input id="numLikes" value="{{ object.likes.count }}">
-  <p>likes</p>
-
-  
-
-
-  {% if user.is_authenticated %}
-  <form action="." method="POST">
-    {% csrf_token %}
-    <input type="button" id="like" data-slug="{{ object.slug }}" value="Like">
-  </form>
-  {% endif %}
-  <br>
-  {% if user.is_authenticated %}
-  {% ifequal user object.author %}
-  <a href="{% url 'myrecipe:edit' recipe.slug %}">Edit</a>
-  <a href="{% url 'myrecipe:deleteRecipe' recipe.slug %}">Delete</a>
-  {% endifequal %}
-  {% endif %}
-</div>
 
 
 {% endblock %}
