@@ -5,10 +5,21 @@
 {% block styles %}
 <link href="{% static 'myrecipe/css/bootstrap-tokenfield.min.css' %}" rel="stylesheet">
 <link href="{% static 'myrecipe/css/singleRecipe.css' %}" rel="stylesheet">
+<style>
+  .singleBadge {
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+</style>
 {% endblock %}
 
 
 {% block main %}
+
+<input type="hidden" id="rslug" data-rslug="{{ recipe.slug }}">
+<input type="hidden" id="likeurl" data-likeurl="{% url 'myrecipe:like' %}">
+{% csrf_token %}
 
 {% if user.is_authenticated %}
 {% ifequal user object.author %}
@@ -28,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <ul class="nav nav-pills subpills">
+      <ul class="nav nav-pills">
         <li class="active"><a href="#">All Recipes</a></li>
         <li><a href="{% url 'myrecipe:addRecipe' %}">Add Recipe</a></li>
         <li><a href="{% url 'myrecipe:modify' %}">Modify Recipe</a></li>
@@ -71,12 +82,19 @@
 <!-- Begin Single Recipe -->
 
 <div class="container">
+  
   <div class="row">
+    <div class="col-md-1"></div>
+    
+    <div class="col-md-10 col-sm-12 col xs-12">
+      <!-- stonewall -->
+      
+       <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
       
       <ul class="list-unstyled">
-        <li><div><h2>{{ object.title }}</h2></div></li>
-        <li><div><p>added by: <a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></p></div></li>
+        <li><div><h2>{{ object.title }}&nbsp;&nbsp;<span id="recipeLikeButton" class="badge singleBadge"><i class="fa fa-thumbs-up"></i></span></h2></div></li>
+        <li><div><p>added by: <strong><a href="{% url 'chef:chef' usrname=object.author.username %}">{{ object.author }}</a></strong></p></div></li>
       </ul>
       
     </div>
@@ -84,7 +102,7 @@
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="well">
+      <div class="well subheading-top">
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Ingredients</h3></li>
           <li class="subheading2"><h3><small>Servings: {{ object.yieldAmt }}</small></h3></li>
@@ -105,13 +123,13 @@
   
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="well">
+      <div class="well subheading-top">
         <ul class="list-unstyled list-inline subheading-group">
           <li class="subheading"><h3>Method</h3></li>
           <li class="subheading2">
             <ul class="list-unstyled list-inline">
-              <li><h3><small>Prep time: {{ object.prepTime }}</small></h3></li>
-              <li><h3><small>Cook time: {{ object.cookTime }}</small></h3></li>
+              <li><h3><small>Prep time: <strong>{{ object.prepTime }} min.</strong></small></h3></li>
+              <li><h3><small>Cook time:  <strong>{{ object.cookTime }} min.</strong></small></h3></li>
             </ul>
           </li>
         </ul>
@@ -132,109 +150,30 @@
   
   {% if object.notes %}
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 notes">
+    <div class="col-md-12 col-sm-12 col-xs-12 notes subheading-top tagsDiv">
       <h3>Notes:&nbsp;&nbsp;<span class="text-muted">{{ object.notes }}</span></h3>
     </div>
   </div> <!-- /.row -->
   {% endif %}
   
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv">
+    <div class="col-md-12 col-sm-12 col-xs-12 tagsDiv bottomTags">
       <h3>Tags</h3>
       <input id="tags" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
     </div>
   </div> <!-- /.row -->
+      
+      <!-- stonewall -->
+    </div>
+    
+    <div class="col-md-1"></div>
+  </div>
+    
   
-  
-    {% if user.is_authenticated %}
-    <form action="." method="POST">
-      {% csrf_token %}
-      <input type="button" id="like" data-slug="{{ object.slug }}" value="Like">
-    </form>
-    {% endif %} 
-
-    <br>
-
-    {% if user.is_authenticated %}
-    {% ifequal user object.author %}
-    <a href="{% url 'myrecipe:edit' recipe.slug %}">
-      <button class="btn btn-default starttodaybutton"> <i class="fa fa-edit"></i> edit </button>
-    </a>
-    <a href="{% url 'myrecipe:deleteRecipe' recipe.slug %}">
-      <button class="btn btn-default starttodaybutton"> <i class="fa fa-times"></i> delete</button>
-    </a>
-    {% endifequal %}
-    {% endif %}
-  
-  
+ 
   
 </div> <!-- /.container -->
 
-
-
-
-
-
-
-<!--
-<div class="container">
-  <h2>viewing {{ object.title }}</h2>
-  <p>
-    Added on {{ object.pub_date | date:"M d, Y" }} by <a href="{% url 'chef:chef' usrname=recipe.author.username %}">{{ object.author }}</a>
-  </p>
-  <p>Prep Time: {{ object.prepTime }}</p>
-  <p>Cook Time: {{ object.cookTime }}</p>
-  <p>Total Time: {{ object.totalTime }}</p>
-  <h4>yields {{ object.yieldAmt }}</h4>
-  <div id="ingredients">
-    <p>Ingredients</p>
-    <ul>
-      {% for key, value in ingredList %}
-      <li>{{ key }} : {{ value }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div id="methods">
-    <p>Method</p>
-    <ul>
-      {% for key, value in methodList %}
-      <li>{{ key }} : {{ value }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% if object.notes %}
-  <p>notes : {{ object.notes }}</p>
-  {% endif %}
-  
-  
-  
-  <h3>Tags</h3>
-   <input id="tagss" type="text" value="{% for t in object.tags.names %}{% if forloop.last %}{{ t }}{% else %}{{ t }},{% endif %}{% endfor %}">
-    
-  <input id="testingInput" value="this is a test"><br>
-   
-
-  <input id="numLikes" value="{{ object.likes.count }}">
-  <p>likes</p>
-
-
-
-
-  {% if user.is_authenticated %}
-  <form action="." method="POST">
-    {% csrf_token %}
-    <input type="button" id="like" data-slug="{{ object.slug }}" value="Like">
-  </form>
-  {% endif %}
-  <br>
-  {% if user.is_authenticated %}
-  {% ifequal user object.author %}
-  <a href="{% url 'myrecipe:edit' recipe.slug %}">Edit</a>
-  <a href="{% url 'myrecipe:deleteRecipe' recipe.slug %}">Delete</a>
-  {% endifequal %}
-  {% endif %}
-</div>
--->
 
 {% endblock %}
   
@@ -302,5 +241,34 @@
       //ajaxLike();
       
     });
+    
+    $(document).ready(function() {
+      
+      $("#recipeLikeButton").click(function() {
+        
+        $.ajax({
+          url: $("#likeurl").data("likeurl"),
+          headers: {
+            "X-CSRFToken": $.cookie("csrftoken")
+          },
+          type: "POST", 
+          dataType: "json",
+          data: {
+            "slug": $("#rslug").data("rslug")
+          },
+          success: function(data, status) {
+            utils.comboSuccess(data);
+          },
+          error: function(data, status) {
+            utils.comboAlert(data);
+          },
+        });
+        
+      });
+      
+    });
+    
+    //likeurl
+    //rslug
   </script>
 {% endblock %}
