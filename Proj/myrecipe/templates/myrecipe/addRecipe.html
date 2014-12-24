@@ -251,6 +251,8 @@
           console.log(data.responseText);
           window.wtf = data;
           errorIterate(data);
+          
+          utils.comboAlert(data);
         }
       });
     }

@@ -108,32 +108,28 @@
   <!-- END WELL -->
   
   
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row dashboardpage">
+    <div class="col-md-12 text-center">
       {% if is_paginated %}
-     
-      
-      
-      {% if page_obj.has_previous %}
-      <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.previous_page_number }}"></a>
+
+        {% if page_obj.has_previous %}
+          <span class="badge page">
+            <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.previous_page_number }}">Previous</a>
+          </span>
+        {% endif %}
+
+        <span class="page">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+          <span class="badge page">
+            <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
+          </span>
+        {% endif %}
+
       {% endif %}
 
-
-      <span>
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-      </span>
-
-      {% if page_obj.has_next %}
-      <a href="{% url 'myrecipe:AllRecipes' %}?page={{ page_obj.next_page_number }}">Next</a>
-      {% endif %}
-
-      {% endif %}
-      
-      
-      {% endif %}
-      
-     
-      
     </div>
   </div>
   
