@@ -57,7 +57,7 @@
             {% if user.is_authenticated %}
             <li><button id="base-logout-button" data-href="{% url 'logout' %}" type="button" class="btn btn-default navbar-btn"><strong>Logout</strong></button></li>
             {% else %}
-            <li><button type="button" class="btn btn-default navbar-btn">Sign in</button></li>
+            <li><a href="{% url 'myrecipe:login' %}"><button type="button" class="btn btn-default navbar-btn">Sign in</button></a></li>
             {% endif %}
           </ul>
        

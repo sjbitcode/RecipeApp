@@ -8,9 +8,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^logout/$', 'django.contrib.auth.views.logout', kwargs={'next_page': "/"}, name="logout"),
+    url(r"", include('myrecipe.urls', namespace='myrecipe')),
     url(r'^admin/', include(admin.site.urls)),
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r"", include("chef.urls", namespace = "chef")),
-    url(r"", include('myrecipe.urls', namespace='myrecipe')),
+    
 )

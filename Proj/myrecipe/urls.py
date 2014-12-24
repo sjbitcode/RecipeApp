@@ -38,7 +38,7 @@ urlpatterns = patterns('',
   url(r'^like/$', views.ProcessLikes, name="like"),
                        
   ### Testing Python Social Auth ###
-  url(r'^login$', TemplateView.as_view(template_name = "myrecipe/login.html"), name="login"),
+  url(r'^login/$', TemplateView.as_view(template_name = "myrecipe/login.html"), kwargs={'next_page': "dashboard"}, name="login"),
   
   ### Index page ###
   url(r'^/?$',  TemplateView.as_view(template_name = "myrecipe/index.html"), name="index"),
