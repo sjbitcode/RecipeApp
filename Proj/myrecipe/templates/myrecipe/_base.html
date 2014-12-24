@@ -50,8 +50,8 @@
           
           <ul class="nav navbar-nav redHalf hovernav">
             <li><a href="{% url 'myrecipe:index' %}">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="{% url 'myrecipe:about' %}">About</a></li>
+            <li><a href="{% url 'myrecipe:contact' %}">Contact Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right yellowHalf">
             {% if user.is_authenticated %}
@@ -136,7 +136,7 @@
 
         <div class="col-md-4"> 
           <ul class="nav nav-pills nav-stacked list-unstyled">
-            <li><a href="#">Browse</a></li>
+            <li><a href="{% url 'myrecipe:AllRecipes' %}">Browse</a></li>
             <li><a href="#">Cooking tidbits</a></li>
           </ul>
         </div>
@@ -145,8 +145,8 @@
         <div class="col-md-4"> 
           <ul class="nav nav-pills nav-stacked list-unstyled">
             <li><a href="{% url 'myrecipe:index' %}">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'myrecipe:about' %}">About</a></li>
+            <li><a href="{% url 'myrecipe:contact' %}">Contact</a></li>
           </ul>
         </div>
         
@@ -154,7 +154,7 @@
         {% else %}
         <div class="col-md-6"> 
           <ul class="nav nav-pills nav-stacked list-unstyled">
-            <li><a href="#">Browse</a></li>
+            <li><a href="{% url 'myrecipe:AllRecipes' %}">Browse</a></li>
             <li><a href="#">Cooking tidbits</a></li>
           </ul>
         </div>
@@ -163,8 +163,8 @@
         <div class="col-md-6"> 
           <ul class="nav nav-pills nav-stacked list-unstyled">
             <li><a href="{% url 'myrecipe:index' %}">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'myrecipe:about' %}">About</a></li>
+            <li><a href="{% url 'myrecipe:contact' %}">Contact</a></li>
           </ul>
         </div>
         {% endif %}

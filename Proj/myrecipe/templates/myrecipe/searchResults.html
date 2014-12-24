@@ -8,7 +8,7 @@
 
 {% block main %}
 
-
+{% if user.is_authenticated %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -26,6 +26,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 
   
@@ -36,7 +37,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default">
-          <div class="panel-body">
+          <div class="panel-body text-center subheading">
             <i class="fa fa-quote-left"></i> {{ request.GET.recipeQuery }} <i class="fa fa-quote-right"></i>
           </div>
         </div>

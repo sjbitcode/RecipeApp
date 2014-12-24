@@ -603,7 +603,7 @@ a {
   margin-bottom: 30px;
 }
 
-.greeting, .userNameDate, #waiting, .addrecipetitle, .subheading {
+.greeting, .userNameDate, #waiting, .addrecipetitle, .subheading, .aboutpanel {
   color: #86878D;
 }
 
@@ -709,7 +709,7 @@ background-color: #A74770;
   font-size: 35px;
 }
 
-.subheading, .singleNotes {
+.subheading, .singleNotes, .aboutpanel {
   font-family: PrintClearly;
   font-size: 30px;
 }
@@ -742,6 +742,8 @@ small {
   background-color: #F8F4F4;
   margin: 50px 0 50px 0;
 }
+
+
 
 
 

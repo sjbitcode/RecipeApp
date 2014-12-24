@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block main %}
+
+{% if user.is_authenticated %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -24,6 +26,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 
 <div class="container">
@@ -33,7 +36,7 @@
       <div class="col-md-12">
         <div class="jumbotron text-center">
           <h1 class="error404"><i class="fa fa-quote-left"></i> A simple way to manage and collect your recipes <i class="fa fa-quote-right"></i></h1>
-          <p><a class="btn btn-primary btn-lg starttodaybutton" href="#" role="button">Learn more</a></p>
+          <p><a class="btn btn-primary btn-lg starttodaybutton" href="#firstQuestion" role="button">Learn more</a></p>
         </div>
       </div>
       
@@ -44,57 +47,74 @@
       <div class="col-md-12">
         <!-- FAQ HERE -->
         
-        <div class="panel panel-default">
+        <div class="panel panel-default aboutpanel">
           <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
+            <h3 class="panel-title" id="firstQuestion">What can I do on Soupbits?</h3>
           </div>
-          <div class="panel-body">
-            Answer
+          <div class="panel-body aboutpanel">
+            If you don't have an account, you can browse all recipes on Soupbits, and view other user's public profiles.<br>
+            If you have an account, you can create and modify recipes, favorite other user's recipes, and view their public profiles.  
           </div>
         </div>
         
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
+            <h3 class="panel-title">How do I make an account?</h3>
           </div>
-          <div class="panel-body">
-            Answer
-          </div>
-        </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
-          </div>
-          <div class="panel-body">
-            Answer
+          <div class="panel-body aboutpanel">
+            Making an account is simple if you already have an account with Facebook, Twitter, or Google Plus. 
+            Use any of those logins, and you're good to go!
           </div>
         </div>
         
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
+            <h3 class="panel-title">What inspired Soupbits?</h3>
           </div>
-          <div class="panel-body">
-            Answer
-          </div>
-        </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
-          </div>
-          <div class="panel-body">
-            Answer
+          <div class="panel-body aboutpanel">
+            Soupbits are for those who just want to keep track of the recipes they like. <br> Remember that time when you 
+            made that amazing apple pie, and then lost the recipe? Well not again!
           </div>
         </div>
         
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Question</h3>
+            <h3 class="panel-title">What do I get if I make an account?</h3>
           </div>
-          <div class="panel-body">
-            Answer
+          <div class="panel-body aboutpanel">
+            First of all, you must be logged in. Once logged in, you are redirected to your dashboard where you see
+            everything related to you! That is, you can edit your profile, see all your recipes, favorited recipes, and 
+            the people who liked your recipes (including you, shameless plug!).<br>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">How do I make recipes on Soupbits?</h3>
+          </div>
+          <div class="panel-body aboutpanel">
+            Making a recipe requires the generic fields as well as tags. Once you tag your recipes, you can search that tag
+            by clicking on it!
+          </div>
+        </div>
+        
+         <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Are these all of the features on Soupbits?</h3>
+          </div>
+          <div class="panel-body aboutpanel">
+            Soupbits is still in development mode, there are some features to be implemented. Here's a public pledge on our behalf
+            
+            <ul>
+              <li>Downloading recipes</li>
+              <li>Extended searching features</li>
+              <li>Ability to upload pictures</li>
+              <li>Cool graphics</li>
+              <li>Cooking tips and measurements section for users</li>
+              <li>User shopping list</li>
+              <li>Comments for recipes</li>
+              
+            </ul>
           </div>
         </div>
         

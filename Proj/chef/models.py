@@ -25,7 +25,7 @@ def createUserProfile(sender, **kwargs):
   if kwargs.get("created", None) and kwargs["created"]:
     # See if 'instance' exists...
     if kwargs.get("instance", None) and kwargs["instance"]:
-      bioText = "Hey everyone! I'm " + kwargs["instance"].username + ", and I love to cook!"
+      bioText = "Hey everyone! My name is " + kwargs["instance"].username + ", and I love to cook!"
       usrprofile, created = UserProfile.objects.get_or_create(user = kwargs["instance"], bio = bioText)
 
 # Connect the signal.
